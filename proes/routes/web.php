@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ModuloController;
+use App\Http\Controllers\FaseController;
 use App\Http\Controllers\LojaController;
 
 Route::get('/', function () {
@@ -20,6 +21,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/modulos', [ModuloController::class, 'index'])->name('modulos.index');
+    Route::get('/fases', [FaseController::class, 'index'])->name('fases.index');
     Route::get('/loja', [LojaController::class, 'index'])->name('loja.index');
 });
 

@@ -17,7 +17,7 @@
 
         <div class="col-md-4">
             <a href="#" class="card text-center p-3 text-decoration-none">
-                <h5>Conquista alcançada!</h5>
+                <h5>Última conquista alcançada!</h5>
                 <i class="bi bi-trophy fs-1"></i>
                 <p class="fw-bold">Váriável com o nome da conquista</p>
             </a>

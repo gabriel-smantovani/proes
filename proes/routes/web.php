@@ -21,6 +21,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/modulos', [ModuloController::class, 'index'])->name('modulos.index');
+    Route::get('/modulos/{id}', [ModuloController::class, 'show'])->name('modulos.show');
     Route::get('/fases', [FaseController::class, 'index'])->name('fases.index');
     Route::get('/loja', [LojaController::class, 'index'])->name('loja.index');
 });

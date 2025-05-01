@@ -16,11 +16,26 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                     <x-nav-link :href="route('modulos.index')" :active="request()->routeIs('modulos')">
-                        {{ __('Meu progresso') }}
+                        {{ __('Jornada') }}
                     </x-nav-link>
                     <x-nav-link :href="route('loja.index')" :active="request()->routeIs('loja')">
                         {{ __('Loja') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('colecao.index')" :active="request()->routeIs('loja')">
+                        {{ __('Minha coleção') }}
+                    </x-nav-link>
+                </div>
+            </div>
+
+            <div class="hidden sm:flex sm:items-center sm:ms-6">
+                <div class="flex items-center space-x-2 text-gray-700">
+                <p>
+                    <i class="bi bi-coin"></i>
+                    <span>
+                        {{ Auth::user()->moedas }} 
+                        {{ (Auth::user()->moedas == 0 || Auth::user()->moedas == 1) ? 'moeda' : 'moedas' }}
+                    </span>
+                </p>
                 </div>
             </div>
 

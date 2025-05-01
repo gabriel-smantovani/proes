@@ -9,9 +9,25 @@ class Fase extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['id', 'id_modulo', 'titulo', 'ja_jogada'];
+    protected $fillable = ['id', 'id_modulo', 'titulo'];
 
-    public function modulo() {
+    public function modulo()
+    {
         return $this->belongsTo(Modulo::class);
+    }
+
+    public function perguntas()
+    {
+        return $this->hasMany(Pergunta::class);
+    }
+
+    public function respostas()
+    {
+        return $this->hasMany(Resposta::class);
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class)->withPivot('acertos')->withTimestamps();
     }
 }

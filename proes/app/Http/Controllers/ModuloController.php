@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Modulo;
-#use App\Models\Fase;
 
 class ModuloController extends Controller
 {

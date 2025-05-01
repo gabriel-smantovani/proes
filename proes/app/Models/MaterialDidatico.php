@@ -11,9 +11,10 @@ class MaterialDidatico extends Model
 
     protected $table = 'materiaisdidaticos';
 
-    protected $fillable = ['id', 'id_modulo', 'titulo', 'ja_visto', 'link'];
+    protected $fillable = ['modulo_id', 'titulo', 'link'];
 
-    public function modulo() {
+    public function modulo()
+    {
         return $this->belongsTo(Modulo::class);
     }
 }

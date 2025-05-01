@@ -21,6 +21,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'moedas',
+        'avatar_image',
     ];
 
     /**
@@ -44,5 +46,15 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function fases()
+    {
+        return $this->belongsToMany(Fase::class)->withPivot('acertos')->withTimestamps();
+    }
+
+    public function avatares()
+    {
+        return $this->belongsToMany(Avatar::class);
     }
 }

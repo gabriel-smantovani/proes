@@ -8,17 +8,18 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('modulos', function (Blueprint $table) {
+        Schema::create('respostas', function (Blueprint $table) {
             $table->id();
-            $table->string('titulo');
+            $table->foreignId('fase_id')->constrained()->onDelete('cascade');
+            $table->foreignId('pergunta_id')->constrained()->onDelete('cascade');
             $table->string('desc');
-            $table->string('img_link');
+            $table->boolean('correta');
             $table->timestamps();
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('modulo');
+        Schema::dropIfExists('respostas');
     }
 };

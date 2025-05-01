@@ -22,6 +22,12 @@
                 <p class="fw-bold">Váriável com o nome da conquista</p>
             </a>
         </div>
+
+        <div class="col-md-4">
+            <a href="#" class="card text-center p-3 text-decoration-none">
+                <img src="{{ asset('storage/' . $user->avatar_image) }}" class="card-img-top" alt="{{ $user->name }}">
+            </a>
+        </div>
     </div>
 </div>
 @endsection

@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container mt-4 text-center">
-    <h2>Loja de Avatares</h2>
+    <h1 style="color: #f3f4f6; font-size: 2em">Avatares</h1>
 
     @if (session('success'))
         <div class="alert alert-success text-center">{{ session('success') }}</div>
@@ -15,8 +15,8 @@
     <div class="row justify-content-center mt-4">
         @foreach ($avatares as $avatar)
             <div class="col-md-3 mb-4">
-                <div class="card h-100">
-                    <img src="{{ asset('storage/' . $avatar->caminho) }}" class="card-img-top" alt="{{ $avatar->nome }}">
+                <div class="card h-100" style="display: flex; flex-direction: column; align-items: center; background-color: #1f2937; color: #f3f4f6">
+                    <img src="{{ asset('storage/' . $avatar->caminho) }}" class="card-img-top" alt="{{ $avatar->nome }}" style="width: 10em; height: 10em; margin-top: 1em; background-color: #1f2937">
                     <div class="card-body">
                         <h5 class="card-title">{{ $avatar->nome }}</h5>
                         <p><i class="bi bi-coin"></i> {{ $avatar->preco }}</p>

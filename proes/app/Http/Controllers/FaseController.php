@@ -24,8 +24,6 @@ class FaseController extends Controller
     {
         $respostas = $request->input('respostas');
 
-        // Aqui você pode validar, corrigir, calcular nota, salvar tentativa etc.
-
         return redirect()->route('modulos.index')->with('success', 'Respostas enviadas com sucesso!');
     }
 }

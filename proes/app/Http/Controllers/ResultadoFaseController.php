@@ -54,6 +54,8 @@ class ResultadoFaseController extends Controller
 
         $moeda_s = ($moedas_ganhas == 0 || $moedas_ganhas == 1) ? 'moeda' : 'moedas';
 
+        app(\App\Services\ConquistaService::class)->verificarConquistas(Auth::user());
+
         return redirect()->route('modulos.show', ['id' => $fase->modulo_id])->with('success', "Você ganhou {$moedas_ganhas} {$moeda_s}!");
     }
 }

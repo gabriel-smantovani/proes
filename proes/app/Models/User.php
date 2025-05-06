@@ -57,4 +57,14 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Avatar::class);
     }
+
+    public function conquistas()
+    {
+        return $this->belongsToMany(Conquista::class, 'usuario_conquistas');
+    }
+
+    public function resultadosFases()
+    {
+        return $this->hasMany(ResultadoFase::class);
+    }
 }

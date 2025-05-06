@@ -22,7 +22,7 @@
                             <h5 class="card-title">{{ $avatar->nome }}</h5>
                             <form action="{{ route('colecao.equipar', $avatar->id) }}" method="POST">
                                 @csrf
-                                <button class="btn btn-primary">Equipar</button>
+                                <button class="btn btn-primary" style="background-color: #3730a3; border: 1px solid #34d399">Equipar</button>
                             </form>
                         </div>
                     </div>

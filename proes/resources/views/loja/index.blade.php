@@ -25,7 +25,7 @@
                         @else
                             <form action="{{ route('loja.comprar', $avatar->id) }}" method="POST">
                                 @csrf
-                                <button class="btn btn-primary">Comprar</button>
+                                <button class="btn btn-primary" style="background-color: #3730a3; border: 1px solid #34d399">Comprar</button>
                             </form>
                         @endif
                     </div>

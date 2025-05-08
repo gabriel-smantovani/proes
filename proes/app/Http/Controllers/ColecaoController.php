@@ -23,6 +23,6 @@ class ColecaoController extends Controller
         $usuario->avatar_image = $avatar->caminho;
         $usuario->save();
 
-        return redirect()->back()->with('success', 'Avatar equipado com sucesso!');
+        return redirect()->back()->with('success', 'Avatar equipado!');
     }
 }

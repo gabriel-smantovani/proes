@@ -25,10 +25,10 @@
             @endforeach
         </div>
 
-        <div class="mt-4">
-            <button type="button" id="btn-anterior" class="btn btn-primary" style="display:none">Anterior</button>
-            <button type="button" id="btn-proxima" class="btn btn-primary">Próxima</button>
-            <button type="submit" id="btn-finalizar" class="btn btn-success" style="display:none;">Finalizar</button>
+        <div class="d-flex justify-content-evenly mt-4">
+            <button type="button" id="btn-anterior" class="btn btn-primary" style="background-color: #3730a3; display:none">Anterior</button>
+            <button type="submit" id="btn-finalizar" class="btn btn-danger" style="display:none;">Finalizar</button>
+            <button type="button" id="btn-proxima" class="btn btn-primary" style="background-color: #3730a3">Próxima</button>
         </div>
     </form>
 </div>
@@ -41,35 +41,35 @@
     let current = 0;
 
     btnAnterior.addEventListener('click', () => {
-        if (current < 1) {
-            btnAnterior.style.display = 'none';
-        } else if (current == perguntas-length) {
-            perguntas[current].style.display = 'block';
-        } else if (current < perguntas.length) {
+        if (current > 0) {
             perguntas[current].style.display = 'none';
             current--;
-            if (current < perguntas.length) {
-                perguntas[current].style.display = 'block';
-            } else {
+            perguntas[current].style.display = 'block';
+
+            // Se voltou ao início, esconder botão anterior
+            if (current === 0) {
                 btnAnterior.style.display = 'none';
             }
-            console.log(current);
+
+            // Mostrar botão próxima e esconder finalizar
+            btnProxima.style.display = 'inline-block';
+            btnFinalizar.style.display = 'none';
         }
     });
 
     btnProxima.addEventListener('click', () => {
         perguntas[current].style.display = 'none';
         current++;
-        if (current > 0) {
-            btnAnterior.style.display = 'block';
-        }
+
         if (current < perguntas.length) {
             perguntas[current].style.display = 'block';
-        } else {
+            btnAnterior.style.display = 'inline-block';
+        }
+
+        if (current === perguntas.length - 1) {
             btnProxima.style.display = 'none';
             btnFinalizar.style.display = 'inline-block';
         }
-        console.log(current);
     });
 </script>
 @endsection

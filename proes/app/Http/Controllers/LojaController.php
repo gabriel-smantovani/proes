@@ -34,6 +34,6 @@ class LojaController extends Controller
         $usuario->save();
         $usuario->avatares()->attach($avatar->id);
 
-        return redirect()->back()->with('success', 'Avatar comprado com sucesso!');
+        return redirect()->back()->with('success', 'Avatar comprado, encontre-o sua coleção!');
     }
 }

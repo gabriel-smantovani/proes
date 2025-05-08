@@ -8,6 +8,7 @@ use App\Http\Controllers\MaterialDidaticoController;
 use App\Http\Controllers\FaseController;
 use App\Http\Controllers\ResultadoFaseController;
 use App\Http\Controllers\LojaController;
+use App\Http\Controllers\ConquistaController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -33,6 +34,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/loja/comprar/{avatar}', [App\Http\Controllers\LojaController::class, 'comprar'])->name('loja.comprar');
     Route::get('/colecao', [App\Http\Controllers\ColecaoController::class, 'index'])->name('colecao.index');
     Route::post('/colecao/equipar/{avatar}', [App\Http\Controllers\ColecaoController::class, 'equipar'])->name('colecao.equipar');
+    Route::get('/conquistas', [ConquistaController::class, 'index'])->name('conquistas.index');
 });
 
 Route::middleware(['auth', 'professor'])->group(function () {

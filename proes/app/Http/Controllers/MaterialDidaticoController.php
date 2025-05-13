@@ -12,7 +12,7 @@ class MaterialDidaticoController extends Controller
     public function create($modulo_id)
     {
         $modulo = Modulo::findOrFail($modulo_id);
-        return view('materiaisdidaticos.create', compact('modulo'));
+        return view('materiais_didaticos.create', compact('modulo'));
     }
 
     public function store(Request $request)
@@ -20,13 +20,15 @@ class MaterialDidaticoController extends Controller
         $request->validate([
             'modulo_id' => 'required|exists:modulos,id',
             'titulo' => 'required|string|max:255',
-            'link' => 'required|url',
+            'caminho' => 'required',
+            'tipo_de_arquivo' => 'required',
         ]);
 
         MaterialDidatico::create([
             'modulo_id' => $request->modulo_id,
             'titulo' => $request->titulo,
-            'link' => $request->link,
+            'caminho' => $request->caminho,
+            'tipo_de_arquivo' => $request->tipo_de_arquivo,
         ]);
 
         return redirect()->route('modulos.show', $request->modulo_id)->with('success', 'Material adicionado com sucesso!');

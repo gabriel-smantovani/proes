@@ -11,8 +11,9 @@ return new class extends Migration
         Schema::create('avatares', function (Blueprint $table) {
             $table->id();
             $table->string('nome');
-            $table->string('caminho');
-            $table->integer('preco')->default(0);
+            $table->string('imagem');
+            $table->integer('preco')->default(1);
+            $table->string('equipado_em');
             $table->timestamps();
         });
     }

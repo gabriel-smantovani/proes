@@ -22,7 +22,10 @@ class User extends Authenticatable
         'email',
         'password',
         'moedas',
-        'avatar_image',
+        'avatar_head',
+        'avatar_top',
+        'avatar_bottom',
+        'tipo',
     ];
 
     /**

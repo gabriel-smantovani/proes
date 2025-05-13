@@ -9,9 +9,9 @@ class MaterialDidatico extends Model
 {
     use HasFactory;
 
-    protected $table = 'materiaisdidaticos';
+    protected $table = 'materiais_didaticos';
 
-    protected $fillable = ['modulo_id', 'titulo', 'link'];
+    protected $fillable = ['modulo_id', 'titulo', 'caminho', 'tipo_de_arquivo'];
 
     public function modulo()
     {

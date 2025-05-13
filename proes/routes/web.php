@@ -38,8 +38,8 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware(['auth', 'professor'])->group(function () {
-    Route::get('/materiaisdidaticos/create/{modulo_id}', [MaterialDidaticoController::class, 'create'])->name('materiaisdidaticos.create');
-    Route::post('/materiaisdidaticos', [MaterialDidaticoController::class, 'store'])->name('materiaisdidaticos.store');
+    Route::get('/materiais_didaticos/create/{modulo_id}', [MaterialDidaticoController::class, 'create'])->name('materiais_didaticos.create');
+    Route::post('/materiais_didaticos', [MaterialDidaticoController::class, 'store'])->name('materiais_didaticos.store');
 });
 
 require __DIR__.'/auth.php';

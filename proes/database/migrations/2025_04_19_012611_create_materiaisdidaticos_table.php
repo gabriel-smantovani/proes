@@ -8,17 +8,18 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('materiaisdidaticos', function (Blueprint $table) {
+        Schema::create('materiais_didaticos', function (Blueprint $table) {
             $table->id();
             $table->foreignId('modulo_id')->constrained()->onDelete('cascade');
             $table->string('titulo');
-            $table->string('link');
+            $table->string('caminho');
+            $table->string('tipo_de_arquivo');
             $table->timestamps();
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('materiaisdidaticos');
+        Schema::dropIfExists('materiais_didaticos');
     }
 };

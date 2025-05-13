@@ -16,12 +16,12 @@ class ModuloController extends Controller
 
     public function show($id)
     {
-        $modulos = Modulo::with(['fases', 'materiaisdidaticos'])->findOrFail($id);
+        $modulo = Modulo::with(['fases', 'materiais_didaticos'])->findOrFail($id);
 
         return view('modulos.show', [
-            'modulos' => $modulos,
-            'fases' => $modulos->fases,
-            'materiaisdidaticos' => $modulos->materiaisdidaticos,
+            'modulo' => $modulo,
+            'fases' => $modulo->fases,
+            'materiais_didaticos' => $modulo->materiais_didaticos,
         ]);
     }
 }

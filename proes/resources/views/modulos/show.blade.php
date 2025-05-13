@@ -12,7 +12,7 @@
 
 <div class="container mt-4">
     <div class="text-center text-black">
-        <h1 style="color: #f3f4f6; font-size: 2em">{{ $modulos->titulo }}</h1>
+        <h1 style="color: #f3f4f6; font-size: 2em">{{ $modulo->titulo }}</h1>
     </div>
 
     <div class="border rounded p-3"  style="margin-top: 1em; background-color: #1f2937; color: #f3f4f6">
@@ -21,7 +21,7 @@
         </div>
 
         <div class="row mb-2 d-flex justify-content-center">
-        @foreach ($materiaisdidaticos as $material)
+        @foreach ($materiais_didaticos as $material)
             <div class="row mb-2 d-flex justify-content-between" style="border-bottom: 1px solid #f3f4f6">
                 <div class="col-md-5">
                     <p>{{ $material->titulo }}</p>
@@ -34,7 +34,7 @@
             </div>
         @endforeach
         @if (auth()->user()?->tipo === 'professor')
-            <a href="{{ route('materiaisdidaticos.create', $modulos->id) }}" class="btn btn-success" style="background-color: #3730a3; border: 1px solid #34d399">
+            <a href="{{ route('materiais_didaticos.create', $modulo->id) }}" class="btn btn-success" style="background-color: #3730a3; border: 1px solid #34d399">
                 Adicionar material didático
             </a>
         @endif

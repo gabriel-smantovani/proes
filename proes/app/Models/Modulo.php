@@ -9,14 +9,14 @@ class Modulo extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['id', 'titulo', 'desc', 'img_link'];
+    protected $fillable = ['titulo', 'desc', 'img_link'];
 
     public function fases()
     {
         return $this->hasMany(Fase::class);
     }
 
-    public function materiaisDidaticos()
+    public function materiais_didaticos()
     {
         return $this->hasMany(MaterialDidatico::class);
     }

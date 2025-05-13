@@ -8,7 +8,7 @@
 
     <div class="border rounded p-3 bg-light">
 
-        <form action="{{ route('materiaisdidaticos.store') }}" method="POST" class="mt-4">
+        <form action="{{ route('materiais_didaticos.store') }}" method="POST" class="mt-4">
             @csrf
 
             <input type="hidden" name="modulo_id" value="{{ $modulo->id }}">
@@ -19,11 +19,9 @@
             </div>
 
             <div class="row mb-2">
-                <label for="material-link">URL</label>
-                <input type="text" name="link" id="material-link">
+                <label for="material-caminho">Arquivo</label>
+                <input type="text" name="caminho" id="material-caminho">
             </div>
-
-            <input type="hidden" name="ja_visto" value="0">
 
             <button type="submit" class="btn btn-primary">Adicionar</button>
         </form>

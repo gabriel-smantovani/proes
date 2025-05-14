@@ -27,8 +27,17 @@
                     <p>{{ $material->titulo }}</p>
                 </div>
                 <div class="col-md-1 d-flex justify-content-end">
-                    <a href="{{ $material->link }}" target="_blank">
-                        <i class="bi bi-arrow-up-right"></i>
+                    @php
+                        $isLink = $material->tipo_de_arquivo === 'link';
+                        $href = $isLink ? $material->caminho : asset($material->caminho);
+                    @endphp
+
+                    <a href="{{ $href }}" {{ $isLink ? 'target=_blank' : 'download' }}>
+                        @if ($isLink)
+                            <i class="bi bi-box-arrow-up-right"></i> {{-- Ícone para link externo --}}
+                        @else
+                            <i class="bi bi-download"></i> {{-- Ícone para download --}}
+                        @endif
                     </a>
                 </div>
             </div>
@@ -59,6 +68,11 @@
                 </div>
             </div>
         @endforeach
+        @if (auth()->user()?->tipo === 'professor')
+            <a href="{{ route('fases.create', $modulo->id) }}" class="btn btn-success" style="background-color: #3730a3; border: 1px solid #34d399">
+                Adicionar fase
+            </a>
+        @endif
         </div>
     </div>
 </div>

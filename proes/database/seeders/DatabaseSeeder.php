@@ -23,13 +23,13 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             UserSeeder::class,
+            ConquistaSeeder::class,
             ModuloSeeder::class,
             //MaterialDidatico::class,
             FaseSeeder::class,
             PerguntaSeeder::class,
             RespostaSeeder::class,
             //LojaSeeder::class,
-            ConquistaSeeder::class,
         ]);
     }
 }

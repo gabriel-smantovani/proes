@@ -10,7 +10,6 @@ return new class extends Migration
     {
         Schema::create('respostas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('fase_id')->constrained()->onDelete('cascade');
             $table->foreignId('pergunta_id')->constrained()->onDelete('cascade');
             $table->string('desc');
             $table->boolean('correta');

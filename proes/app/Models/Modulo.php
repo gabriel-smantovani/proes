@@ -9,7 +9,7 @@ class Modulo extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['titulo', 'desc', 'img_link'];
+    protected $fillable = ['titulo', 'desc', 'img_link', 'conquista_necessaria_id'];
 
     public function fases()
     {

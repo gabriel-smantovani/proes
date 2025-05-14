@@ -13,6 +13,7 @@ return new class extends Migration
             $table->string('titulo');
             $table->string('desc');
             $table->string('img_link');
+            $table->unsignedBigInteger('conquista_necessaria_id')->nullable();
             $table->timestamps();
         });
     }

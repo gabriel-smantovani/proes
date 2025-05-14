@@ -9,7 +9,7 @@ class Fase extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['id', 'id_modulo', 'titulo'];
+    protected $fillable = ['id', 'modulo_id', 'titulo'];
 
     public function modulo()
     {

@@ -8,6 +8,7 @@ use App\Http\Controllers\MaterialDidaticoController;
 use App\Http\Controllers\FaseController;
 use App\Http\Controllers\ResultadoFaseController;
 use App\Http\Controllers\LojaController;
+use App\Http\Controllers\ColecaoController;
 use App\Http\Controllers\ConquistaController;
 
 Route::get('/', function () {

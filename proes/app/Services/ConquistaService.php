@@ -4,6 +4,8 @@ namespace App\Services;
 
 use App\Models\User;
 use App\Models\Conquista;
+use App\Models\Modulo;
+use App\Models\Fase;
 
 class ConquistaService
 {
@@ -11,7 +13,9 @@ class ConquistaService
     {
         $this->verificarPrimeiraFaseJogada($usuario);
         $this->verificarAcumulouMoedas($usuario);
-        $this->verificarTodasFasesModulo1($usuario);
+        $this->verificarFasesDoModulo1($usuario);
+        $this->verificarFasesDoModulo2($usuario);
+        $this->verificarFasesDoModulo3($usuario);
     }
 
     private function desbloquear(User $usuario, string $nomeConquista)
@@ -38,33 +42,34 @@ class ConquistaService
         }
     }
 
-    private function verificarTodasFasesModulo1(User $usuario)
+    private function verificarFasesDoModulo1(User $usuario)
     {
-        $idsFasesModulo1 = [1, 2, 3]; // IDs das fases do módulo 1
+        $idsFasesDoModulo = Fase::where('modulo_id', 1)->pluck('id');
         $fasesJogadas = $usuario->resultadosFases()->pluck('fase_id')->unique();
 
-        if (collect($idsFasesModulo1)->diff($fasesJogadas)->isEmpty()) {
+        if ($idsFasesDoModulo->diff($fasesJogadas)->isEmpty()) {
             $this->desbloquear($usuario, 'Era uma vez...');
         }
     }
 
-    private function verificarTodasFasesModulo2(User $usuario)
+    private function verificarFasesDoModulo2(User $usuario)
     {
-        $idsFasesModulo2 = [4, 5]; // IDs das fases do módulo 2
+        $idsFasesDoModulo = Fase::where('modulo_id', 2)->pluck('id');
         $fasesJogadas = $usuario->resultadosFases()->pluck('fase_id')->unique();
 
-        if (collect($idsFasesModulo2)->diff($fasesJogadas)->isEmpty()) {
+        if ($idsFasesDoModulo->diff($fasesJogadas)->isEmpty()) {
             $this->desbloquear($usuario, 'Quanta informação!');
         }
     }
 
-    private function verificarTodasFasesModulo3(User $usuario)
+    private function verificarFasesDoModulo3(User $usuario)
     {
-        $idsFasesModulo3 = [6]; // IDs das fases do módulo 3
+        $idsFasesDoModulo = Fase::where('modulo_id', 3)->pluck('id');
         $fasesJogadas = $usuario->resultadosFases()->pluck('fase_id')->unique();
 
-        if (collect($idsFasesModulo3)->diff($fasesJogadas)->isEmpty()) {
+        if ($idsFasesDoModulo->diff($fasesJogadas)->isEmpty()) {
             $this->desbloquear($usuario, 'Acabou!?');
         }
     }
+
 }

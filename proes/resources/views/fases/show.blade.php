@@ -40,6 +40,12 @@
     let btnFinalizar = document.getElementById('btn-finalizar');
     let current = 0;
 
+    if (perguntas.length === 1) {
+        btnAnterior.style.display = 'none';
+        btnProxima.style.display = 'none';
+        btnFinalizar.style.display = 'inline-block';
+    }
+
     btnAnterior.addEventListener('click', () => {
         if (current > 0) {
             perguntas[current].style.display = 'none';

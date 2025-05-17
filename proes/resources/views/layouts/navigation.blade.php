@@ -6,15 +6,12 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
+                        <p class="text-white">Pro<strong>ES</strong></p>
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
                     <x-nav-link :href="route('modulos.index')" :active="request()->routeIs('modulos*')">
                         {{ __('Jornada') }}
                     </x-nav-link>
@@ -32,8 +29,7 @@
                     <p>
                         <i class="bi bi-coin"></i>
                         <span>
-                            {{ Auth::user()->moedas }} 
-                            {{ (Auth::user()->moedas == 0 || Auth::user()->moedas == 1) ? 'moeda' : 'moedas' }}
+                            {{ Auth::user()->moedas }}
                         </span>
                     </p>
                 </div>
@@ -45,7 +41,7 @@
                     <x-slot name="trigger">
                         <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-black bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
                             <div class="inline-flex items-center">
-                                <img src="{{ asset('storage/' . Auth::user()->avatar_image) }}" class="w-5" style="margin-right: 1em">
+                                <img src="{{ asset('storage/' . Auth::user()->avatar_cabeca) }}" class="w-5" style="margin-right: 1em">
                                 {{ Auth::user()->name }}
                             </div>
 
@@ -58,7 +54,7 @@
                     </x-slot>
 
                     <x-slot name="content">
-                        <x-dropdown-link :href="route('profile.edit')">
+                        <x-dropdown-link :href="route('profile.index')">
                             {{ __('Perfil') }}
                         </x-dropdown-link>
 

@@ -32,16 +32,19 @@
             </label>
         </div>
 
-        <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-400 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('register') }}">
-                {{ __('Ainda não tem uma conta?') }}
-            </a>
-
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-400 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                    {{ __('Esqueceu sua senha?') }}
+        <div class="flex items-center justify-between mt-4">
+            <div style="display: flex; flex-direction: column">
+                <a class="underline text-sm text-gray-400 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('register') }}">
+                    {{ __('Ainda não tem uma conta?') }}
                 </a>
-            @endif
+
+                @if (Route::has('password.request'))
+                    <a class="underline text-sm text-gray-400 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
+                        {{ __('Esqueceu sua senha?') }}
+                    </a>
+                @endif
+            </div>
+            
 
             <x-primary-button class="ms-3" style="background-color: #3730a3">
                 {{ __('Log in') }}

@@ -9,18 +9,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('avatar_head')->default('defaulthead.png')->after('moedas');
-            $table->string('avatar_top')->default('defaulttop.png')->after('avatar_head');
-            $table->string('avatar_bottom')->default('defaultbottom.png')->after('avatar_top');
+            $table->string('avatar_cabeca')->default('defaultcabeca.png')->after('moedas');
+            $table->string('avatar_traje')->default('defaulttraje.png')->after('avatar_cabeca');
         });
     }
 
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('avatar_head');
-            $table->dropColumn('avatar_top');
-            $table->dropColumn('avatar_bottom');
+            $table->dropColumn('avatar_cabeca');
+            $table->dropColumn('avatar_traje');
         });
     }
 };

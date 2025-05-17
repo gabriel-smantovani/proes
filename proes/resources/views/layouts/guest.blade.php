@@ -18,7 +18,10 @@
         <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0" style="background-color: #111827">
             <div>
                 <a href="/">
-                    <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+                    <div style="display: flex; align-items: center; justify-content: center">
+                        <h2 style="font-size: 2em; color: #9ca3af">Pro</h2>
+                        <h1 style="font-size: 3em; color: #f3f4f6">ES</h1>
+                    </div>
                 </a>
             </div>
 

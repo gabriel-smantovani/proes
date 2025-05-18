@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
 
 
         $this->call([
-            UserSeeder::class,
+            AvatarSeeder::class,
             ConquistaSeeder::class,
             ModuloSeeder::class,
             //MaterialDidatico::class,
@@ -30,6 +30,10 @@ class DatabaseSeeder extends Seeder
             PerguntaSeeder::class,
             RespostaSeeder::class,
             //LojaSeeder::class,
+        ]);
+
+        $this->call([
+            UserSeeder::class,
         ]);
     }
 }

@@ -20,7 +20,11 @@ class ColecaoController extends Controller
         $usuario = Auth::user();
 
         // Para trocar o avatar equipado pelo escolhido na aba minha coleção
-        $usuario->avatar_image = $avatar->caminho;
+        if ($avatar->equipado_em == 'cabeca')
+            $usuario->avatar_cabeca = $avatar->imagem;
+        else
+            $ususario->avatar_traje = $avatar->imagem;
+        
         $usuario->save();
 
         return redirect()->back()->with('success', 'Avatar equipado!');

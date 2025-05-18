@@ -12,8 +12,7 @@ class ConquistaController extends Controller
     public function index()
     {
         $usuario = Auth::user();
-        $conquistasIds = UsuarioConquista::where('user_id', $usuario->id)->pluck('conquista_id');
-        $conquistas = Conquista::whereIn('id', $conquistasIds)->get();
+        $conquistas = $usuario->conquistas;
 
         return view('conquistas.index', compact('conquistas'));
     }

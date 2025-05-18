@@ -65,7 +65,7 @@ class User extends Authenticatable
 
     public function conquistas()
     {
-        return $this->belongsToMany(Conquista::class, 'usuario_conquistas');
+        return $this->belongsToMany(Conquista::class, 'usuario_conquistas')->withTimestamps();
     }
 
     public function resultadosFases()

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Fase;
 use App\Models\ResultadoFase;
 use App\Models\UsuarioConquista;
 use Illuminate\Http\Request;
@@ -24,6 +25,10 @@ class DashboardController extends Controller
 
         $str_conquista = $usuarioconquista?->conquista->nome ?? 'Nenhuma conquista alcançada até então';
 
-        return view('dashboard', compact('usuario', 'str_fase', 'str_conquista'));
+        $totalFases = Fase::count();
+        $fasesConcluidas = ResultadoFase::where('user_id', $usuario->id)->distinct('fase_id')->count('fase_id');
+        $percentual = $totalFases > 0 ? round(($fasesConcluidas / $totalFases) * 100, 2) : 0;
+
+        return view('dashboard', compact('usuario', 'str_fase', 'str_conquista', 'totalFases', 'fasesConcluidas', 'percentual'));
     }
 }

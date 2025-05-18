@@ -11,6 +11,9 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ $conquista->nome }}</h5>
                         <p>{{ $conquista->descricao }}</p>
+                        <p class="text-sm text-gray-400">
+                            Obtida em: {{ $conquista->pivot->created_at->setTimezone('America/Sao_Paulo')->format('d/m/Y H:i') }}
+                        </p>
                     </div>
                 </div>
             </div>

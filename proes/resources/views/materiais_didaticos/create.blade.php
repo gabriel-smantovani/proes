@@ -20,20 +20,20 @@
 
             <div class="mb-3">
                 <label for="tipo_input" style="color: #f3f4f6">Tipo de material</label>
-                <select id="tipo_input" name="tipo_de_arquivo"  class="block mt-1 w-full form-select" onchange="alternarTipoMaterial()" required>
+                <select id="tipo_input" name="tipo_de_arquivo" class="block mt-1 w-full form-select" onchange="alternarTipoMaterial()" required>
                     <option value="">Selecione...</option>
                     <option value="link">Link</option>
-                    <option value="upload">Upload de Arquivo</option>
+                    <option value="upload">Upload de arquivo</option>
                 </select>
             </div>
 
             <div class="mb-3 d-none" id="campo-link">
-                <label for="material-link" style="color: #f3f4f6">Link do material</label>
+                <label for="material-link" style="color: #f3f4f6">Link</label>
                 <input type="text" name="caminho" id="material-link"  class="block mt-1 w-full">
             </div>
 
             <div class="mb-3 d-none" id="campo-upload">
-                <label for="material-upload" style="color: #f3f4f6">Upload do material</label>
+                <label for="material-upload" style="color: #f3f4f6">Arquivo</label>
                 <input type="file" name="arquivo" id="material-upload"  class="block mt-1 w-full" style="color: #f3f4f6">
             </div>
 

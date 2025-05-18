@@ -15,9 +15,4 @@ class Resposta extends Model
     {
         return $this->belongsTo(Pergunta::class);
     }
-
-    public function fase()
-    {
-        return $this->belongsTo(Fase::class);
-    }
 }

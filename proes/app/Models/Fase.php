@@ -21,11 +21,6 @@ class Fase extends Model
         return $this->hasMany(Pergunta::class);
     }
 
-    public function respostas()
-    {
-        return $this->hasMany(Resposta::class);
-    }
-
     public function users()
     {
         return $this->belongsToMany(User::class)->withPivot('acertos')->withTimestamps();

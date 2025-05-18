@@ -23,7 +23,7 @@
         </style>
     </head>
     <body class="font-sans antialiased">
-        <div class="min-h-screen" style="background-color: #111827">
+        <div class="min-h-screen" style="background-color: #111827; padding-bottom: 2em">
             @include('layouts.navigation')
 
             <!-- Page Heading -->

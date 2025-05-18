@@ -6,6 +6,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ModuloController;
 use App\Http\Controllers\MaterialDidaticoController;
 use App\Http\Controllers\FaseController;
+use App\Http\Controllers\PerguntaController;
 use App\Http\Controllers\ResultadoFaseController;
 use App\Http\Controllers\LojaController;
 use App\Http\Controllers\ColecaoController;
@@ -33,7 +34,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/fases', [FaseController::class, 'store'])->name('fases.store');
     Route::get('/fases', [FaseController::class, 'edit'])->name('fases.edit');
     Route::patch('/fases', [FaseController::class, 'update'])->name('fases.update');
-    Route::delete('/fases', [FaseController::class, 'destroy'])->name('fases.destroy');
+    Route::delete('/fases/{fase}', [FaseController::class, 'destroy'])->name('fases.destroy');
     Route::post('/fases/{fase}/finalizar', [ResultadoFaseController::class, 'finalizar'])->name('fases.finalizar');
     Route::get('/loja', [LojaController::class, 'index'])->name('loja.index');
     Route::post('/loja/comprar/{avatar}', [LojaController::class, 'comprar'])->name('loja.comprar');
@@ -45,6 +46,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/materiais/{material}/edit', [MaterialDidaticoController::class, 'edit'])->name('materiais.edit');
     Route::put('/materiais/{material}', [MaterialDidaticoController::class, 'update'])->name('materiais.update');
     Route::delete('/materiais/{material}', [MaterialDidaticoController::class, 'destroy'])->name('materiais.destroy');
+    Route::get('/fases/{fase}/perguntas', [PerguntaController::class, 'show'])->name('perguntas.show');
+    Route::get('/perguntas/create/{fase_id}', [PerguntaController::class, 'create'])->name('perguntas.create');
+    Route::post('/perguntas', [PerguntaController::class, 'store'])->name('perguntas.store');
+    Route::get('/perguntas/{pergunta}/edit', [PerguntaController::class, 'edit'])->name('perguntas.edit');
+    Route::put('/perguntas/{pergunta}', [PerguntaController::class, 'update'])->name('perguntas.update');
+    Route::delete('/perguntas/{pergunta}', [PerguntaController::class, 'destroy'])->name('perguntas.destroy');
 });
 
 require __DIR__.'/auth.php';

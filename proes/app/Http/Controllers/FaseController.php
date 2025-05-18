@@ -11,6 +11,12 @@ use App\Models\Resposta;
 
 class FaseController extends Controller
 {
+    public function index()
+    {
+        $fases = Fase::with('modulo')->get(); // ou paginate
+        return view('fases.index', compact('fases'));
+    }
+
     public function show($id)
     {
         $fase = Fase::with(['modulo', 'perguntas.respostas'])->findOrFail($id);
@@ -65,5 +71,20 @@ class FaseController extends Controller
         }
 
         return redirect()->route('modulos.index')->with('success', 'Fase criada com sucesso!');
+    }
+
+    public function destroy(Fase $fase)
+    {
+        $moduloId = $fase->modulo_id;
+
+        foreach ($fase->perguntas as $pergunta) {
+            $pergunta->respostas()->delete();
+        }
+
+        $fase->perguntas()->delete();
+
+        $fase->delete();
+
+        return redirect()->route('modulos.show', ['id' => $moduloId])->with('success', 'Fase e conteúdos associados excluídos com sucesso.');
     }
 }

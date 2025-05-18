@@ -25,7 +25,7 @@
     </div>
 
     <div class="border rounded p-3"  style="margin-top: 1em; background-color: #1f2937; color: #f3f4f6">
-        <div class="text-black" style="display: flex; justify-content: space-between; align-items: center">
+        <div style="display: flex; justify-content: space-between; align-items: center">
             <h1 style="color: #f3f4f6; font-size: 1.2em; margin-left: 2em">Material didático</h1>
             @if (auth()->user()?->tipo === 'professor')
                 <a href="{{ route('materiais_didaticos.create', $modulo->id) }}" class="btn btn-success" style="margin-right: 2em; background-color: #3730a3; border: 1px solid #34d399; font-weight: bold">
@@ -34,29 +34,31 @@
             @endif
         </div>
     </div>
-    <div style="display: flex; flex-direction: column; justify-content: end; align-items: end">
+    <div style="display: flex; flex-direction: column; align-items: end">
     @foreach ($materiais_didaticos as $material)
         <div class="border rounded p-3"  style="display: flex; align-items: center; justify-content: space-between; width: 90%; margin-top: 0.5em; background-color: #1f2937; color: #f3f4f6">
-            <div style="width: 85%">
+            <div style="width: 80%">
                 <p style="margin-left: 1em">{{ $material->titulo }}</p>
             </div>
             @if (auth()->user()?->tipo === 'professor')
-                <a href="{{ route('materiais.edit', ['material' => $material->id]) }}" class="btn btn-danger" style="margin-right: 2em; border: 1px solid white; font-weight: bold">
-                    <i class="bi bi-pencil"></i>
+                <a href="{{ route('materiais.edit', ['material' => $material->id]) }}" class="btn btn-warning" style="border: 1px solid white; font-weight: bold; margin-right: 1em">
+                    <i class="bi bi-pencil-fill"></i>
                 </a>
                 <form action="{{ route('materiais.destroy', $material->id) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir este material?');">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="text-red-600 hover:underline">Excluir</button>
+                    <button type="submit" class="btn btn-danger" style="border: 1px solid white">
+                        <i class="bi bi-trash-fill"></i>
+                    </button>
                 </form>
             @endif
-            <div class="col-md-1 d-flex justify-content-end" style="width: 5%">
+            <div class="col-md-1 d-flex justify-content-end" style="margin-right: 2em">
                 @php
                     $isLink = $material->tipo_de_arquivo === 'link';
                     $href = $isLink ? $material->caminho : asset($material->caminho);
                 @endphp
 
-                <a href="{{ $href }}" {{ $isLink ? 'target=_blank' : 'download' }} class="btn btn-success" style="margin-right: 2em; background-color: #3730a3; border: 1px solid #34d399; font-weight: bold; color: #f3f4f6">
+                <a href="{{ $href }}" {{ $isLink ? 'target=_blank' : 'download' }} class="btn btn-success" style="background-color: #3730a3; border: 1px solid #34d399; font-weight: bold; color: #f3f4f6">
                     @if ($isLink)
                         <i class="bi bi-box-arrow-up-right"></i>
                     @else
@@ -78,19 +80,27 @@
             @endif
         </div>
     </div>
-    <div style="display: flex; flex-direction: column; justify-content: end; align-items: end">
+
+    <div style="display: flex; flex-direction: column; align-items: end">
     @foreach ($fases as $fase)
-        <div class="border rounded p-3"  style="display: flex; align-items: center; justify-content: space-between; width: 90%; margin-top: 0.5em; background-color: #1f2937; color: #f3f4f6">
-            <div style="width: 85%">
+        <div class="border rounded p-3" style="display: flex; align-items: center; justify-content: space-between; width: 90%; margin-top: 0.5em; background-color: #1f2937; color: #f3f4f6">
+            <div style="width: 80%">
                 <p style="margin-left: 1em">{{ $fase->titulo }}</p>
             </div>
             @if (auth()->user()?->tipo === 'professor')
-                <a href="{{ route('fases.edit') }}" class="btn btn-danger" style="margin-right: 2em; border: 1px solid white; font-weight: bold">
-                    <i class="bi bi-pencil"></i>
+                <a href="{{ route('perguntas.show', $fase->id) }}"  class="btn btn-warning" style="border: 1px solid white; font-weight: bold; margin-right: 1em">
+                    <i class="bi bi-pencil-fill"></i>
                 </a>
+                <form action="{{ route('fases.destroy', $fase->id) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir esta fase por inteira?');">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger" style="border: 1px solid white">
+                        <i class="bi bi-trash-fill"></i>
+                    </button>
+                </form>
             @endif
-            <div class="col-md-1 d-flex justify-content-end" style="width: 5%">
-                <a href="{{ route('fases.show', $fase->id) }}" class="btn btn-success" style="margin-right: 2em; background-color: #3730a3; border: 1px solid #34d399; font-weight: bold; color: #f3f4f6">
+            <div class="col-md-1 d-flex justify-content-end" style="margin-right: 2em">
+                <a href="{{ route('fases.show', $fase->id) }}" class="btn btn-success" style="background-color: #3730a3; border: 1px solid #34d399; font-weight: bold; color: #f3f4f6">
                     <i class="bi bi-play"></i>
                 </a>
             </div>

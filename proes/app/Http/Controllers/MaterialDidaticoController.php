@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 use App\Models\Modulo;
 use App\Models\MaterialDidatico;
@@ -44,5 +45,47 @@ class MaterialDidaticoController extends Controller
         ]);
 
         return redirect()->route('modulos.show', $request->modulo_id)->with('success', 'Material adicionado com sucesso!');
+    }
+
+    public function edit(MaterialDidatico $material)
+    {
+        $modulos = Modulo::all(); // ou filtrar se necessário
+        return view('materiais_didaticos.edit', compact('material', 'modulos'));
+    }
+
+    public function update(Request $request, MaterialDidatico $material)
+    {
+        $request->validate([
+            'modulo_id' => 'required|exists:modulos,id',
+            'titulo' => 'required|string|max:255',
+            'tipo_de_arquivo' => 'required|in:link,upload',
+            'caminho' => 'required_if:tipo_de_arquivo,link|nullable|url',
+            'arquivo' => 'required_if:tipo_de_arquivo,upload|nullable|file|max:20480',
+        ]);
+
+        $material->modulo_id = $request->modulo_id;
+        $material->titulo = $request->titulo;
+        $material->tipo_de_arquivo = $request->tipo_de_arquivo;
+
+        if ($request->tipo_de_arquivo === 'upload' && $request->hasFile('arquivo')) {
+            $path = $request->file('arquivo')->store('materiais', 'public');
+            $material->caminho = 'storage/' . $path;
+        } elseif ($request->tipo_de_arquivo === 'link') {
+            $material->caminho = $request->caminho;
+        }
+
+        $material->save();
+
+        return redirect()->route('modulos.index')->with('success', 'Material atualizado com sucesso!');
+    }
+
+    public function destroy(MaterialDidatico $material_didatico)
+    {
+        dd($request->all());
+
+        $material_didatico->delete();
+
+        return redirect()->route('modulos.index')
+            ->with('success', 'Material excluído com sucesso!');
     }
 }

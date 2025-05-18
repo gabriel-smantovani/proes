@@ -25,7 +25,7 @@ class ProfileUpdateRequest extends FormRequest
                 'max:255',
                 Rule::unique(User::class)->ignore($this->user()->id),
             ],
-            'instituicao_ensino' => ['string'],
+            'instituicao_ensino' => ['nullable', 'string'],
             'link_github' => ['nullable', 'url', 'starts_with:https://github.com/'],
             'link_linkedin' => ['nullable', 'url', 'starts_with:https://www.linkedin.com/'],
         ];

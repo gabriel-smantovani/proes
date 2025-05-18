@@ -29,6 +29,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/modulos/{id}', [ModuloController::class, 'show'])->name('modulos.show');
     Route::get('/fases', [FaseController::class, 'index'])->name('fases.index');
     Route::get('/fases/{id}', [FaseController::class, 'show'])->name('fases.show');
+    Route::get('/fases/create/{modulo_id}', [FaseController::class, 'create'])->name('fases.create');
+    Route::post('/fases', [FaseController::class, 'store'])->name('fases.store');
+    Route::get('/fases', [FaseController::class, 'edit'])->name('fases.edit');
+    Route::patch('/fases', [FaseController::class, 'update'])->name('fases.update');
+    Route::delete('/fases', [FaseController::class, 'destroy'])->name('fases.destroy');
     Route::post('/fases/{fase}/finalizar', [ResultadoFaseController::class, 'finalizar'])->name('fases.finalizar');
     Route::get('/loja', [LojaController::class, 'index'])->name('loja.index');
     Route::post('/loja/comprar/{avatar}', [LojaController::class, 'comprar'])->name('loja.comprar');
@@ -37,8 +42,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/conquistas', [ConquistaController::class, 'index'])->name('conquistas.index');
     Route::get('/materiais_didaticos/create/{modulo_id}', [MaterialDidaticoController::class, 'create'])->name('materiais_didaticos.create');
     Route::post('/materiais_didaticos', [MaterialDidaticoController::class, 'store'])->name('materiais_didaticos.store');
-    Route::get('/fases/create/{modulo_id}', [FaseController::class, 'create'])->name('fases.create');
-    Route::post('/fases', [FaseController::class, 'store'])->name('fases.store');
+    Route::get('/materiais_didaticos/{material_didatico}/edit', [MaterialDidaticoController::class, 'edit'])->name('materiais_didaticos.edit');
+    Route::patch('/materiais_didaticos', [MaterialDidaticoController::class, 'update'])->name('materiais_didaticos.update');
+    Route::delete('/materiais_didaticos}', [MaterialDidaticoController::class, 'destroy'])->name('materiais_didaticos.destroy');
 });
 
 require __DIR__.'/auth.php';

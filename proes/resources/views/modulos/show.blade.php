@@ -14,66 +14,77 @@
     <div class="text-center text-black">
         <h1 style="color: #f3f4f6; font-size: 2em">{{ $modulo->titulo }}</h1>
     </div>
+    <div class="text-center text-black">
+        <p style="color: #f3f4f6; font-size: 1em">{{ $modulo->desc }}</p>
+    </div>
 
     <div class="border rounded p-3"  style="margin-top: 1em; background-color: #1f2937; color: #f3f4f6">
-        <div class="text-center text-black">
-            <h3 style="color: #9ca3af">Material didático</h3>
-        </div>
-
-        <div class="row mb-2 d-flex justify-content-center">
-        @foreach ($materiais_didaticos as $material)
-            <div class="row mb-2 d-flex justify-content-between" style="border-bottom: 1px solid #f3f4f6">
-                <div class="col-md-5">
-                    <p>{{ $material->titulo }}</p>
-                </div>
-                <div class="col-md-1 d-flex justify-content-end">
-                    @php
-                        $isLink = $material->tipo_de_arquivo === 'link';
-                        $href = $isLink ? $material->caminho : asset($material->caminho);
-                    @endphp
-
-                    <a href="{{ $href }}" {{ $isLink ? 'target=_blank' : 'download' }}>
-                        @if ($isLink)
-                            <i class="bi bi-box-arrow-up-right"></i> {{-- Ícone para link externo --}}
-                        @else
-                            <i class="bi bi-download"></i> {{-- Ícone para download --}}
-                        @endif
-                    </a>
-                </div>
-            </div>
-        @endforeach
-        @if (auth()->user()?->tipo === 'professor')
-            <a href="{{ route('materiais_didaticos.create', $modulo->id) }}" class="btn btn-success" style="background-color: #3730a3; border: 1px solid #34d399">
-                Adicionar material didático
-            </a>
-        @endif
+        <div class="text-black" style="display: flex; justify-content: space-between; align-items: center">
+            <h1 style="color: #f3f4f6; font-size: 1.2em; margin-left: 2em">Material didático</h1>
+            @if (auth()->user()?->tipo === 'professor')
+                <a href="{{ route('materiais_didaticos.create', $modulo->id) }}" class="btn btn-success" style="margin-right: 2em; background-color: #3730a3; border: 1px solid #34d399; font-weight: bold">
+                    +
+                </a>
+            @endif
         </div>
     </div>
-    
-    <div class="border rounded p-3" style="margin-top: 1em; background-color: #1f2937; color: #f3f4f6">
-        <div class="text-center text-black">
-            <h3 style="color: #9ca3af">Vamos testar suas habilidades!</h3>
-        </div>
-        
-        <div class="row mb-2 d-flex justify-content-center">
-        @foreach ($fases as $fase)
-            <div class="row mb-2 d-flex justify-content-between" style="border-bottom: 1px solid #f3f4f6">
-                <div class="col-md-5">
-                    <p>{{ $fase->titulo }}</p>
-                </div>
-                <div class="col-md-1 d-flex justify-content-end">
-                    <a href="{{ route('fases.show', $fase->id) }}">
-                        <i class="bi bi-play"></i>
-                    </a>
-                </div>
+    <div style="display: flex; flex-direction: column; justify-content: end; align-items: end">
+    @foreach ($materiais_didaticos as $material)
+        <div class="border rounded p-3"  style="display: flex; align-items: center; justify-content: space-between; width: 90%; margin-top: 0.5em; background-color: #1f2937; color: #f3f4f6">
+            <div style="width: 85%">
+                <p style="margin-left: 1em">{{ $material->titulo }}</p>
             </div>
-        @endforeach
-        @if (auth()->user()?->tipo === 'professor')
-            <a href="{{ route('fases.create', $modulo->id) }}" class="btn btn-success" style="background-color: #3730a3; border: 1px solid #34d399">
-                Adicionar fase
-            </a>
-        @endif
+            @if (auth()->user()?->tipo === 'professor')
+                <a href="{{ route('materiais_didaticos.edit', ['material_didatico' => $material->id]) }}" class="btn btn-danger" style="margin-right: 2em; border: 1px solid white; font-weight: bold">
+                    <i class="bi bi-pencil"></i>
+                </a>
+            @endif
+            <div class="col-md-1 d-flex justify-content-end" style="width: 5%">
+                @php
+                    $isLink = $material->tipo_de_arquivo === 'link';
+                    $href = $isLink ? $material->caminho : asset($material->caminho);
+                @endphp
+
+                <a href="{{ $href }}" {{ $isLink ? 'target=_blank' : 'download' }} class="btn btn-success" style="margin-right: 2em; background-color: #3730a3; border: 1px solid #34d399; font-weight: bold; color: #f3f4f6">
+                    @if ($isLink)
+                        <i class="bi bi-box-arrow-up-right"></i>
+                    @else
+                        <i class="bi bi-download"></i>
+                    @endif
+                </a>
+            </div>
         </div>
+    @endforeach
+    </div>    
+    
+    <div class="border rounded p-3"  style="margin-top: 1em; background-color: #1f2937; color: #f3f4f6">
+        <div class="text-black" style="display: flex; justify-content: space-between; align-items: center">
+            <h1 style="color: #f3f4f6; font-size: 1.2em; margin-left: 2em">Vamos jogar!</h1>
+            @if (auth()->user()?->tipo === 'professor')
+                <a href="{{ route('fases.create', $modulo->id) }}" class="btn btn-success" style="margin-right: 2em; background-color: #3730a3; border: 1px solid #34d399; font-weight: bold">
+                    +
+                </a>
+            @endif
+        </div>
+    </div>
+    <div style="display: flex; flex-direction: column; justify-content: end; align-items: end">
+    @foreach ($fases as $fase)
+        <div class="border rounded p-3"  style="display: flex; align-items: center; justify-content: space-between; width: 90%; margin-top: 0.5em; background-color: #1f2937; color: #f3f4f6">
+            <div style="width: 85%">
+                <p style="margin-left: 1em">{{ $fase->titulo }}</p>
+            </div>
+            @if (auth()->user()?->tipo === 'professor')
+                <a href="{{ route('fases.edit') }}" class="btn btn-danger" style="margin-right: 2em; border: 1px solid white; font-weight: bold">
+                    <i class="bi bi-pencil"></i>
+                </a>
+            @endif
+            <div class="col-md-1 d-flex justify-content-end" style="width: 5%">
+                <a href="{{ route('fases.show', $fase->id) }}" class="btn btn-success" style="margin-right: 2em; background-color: #3730a3; border: 1px solid #34d399; font-weight: bold; color: #f3f4f6">
+                    <i class="bi bi-play"></i>
+                </a>
+            </div>
+        </div>
+    @endforeach
     </div>
 </div>
 @endsection

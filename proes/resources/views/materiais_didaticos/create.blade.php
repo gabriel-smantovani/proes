@@ -29,7 +29,7 @@
 
             <div class="mb-3 d-none" id="campo-link">
                 <label for="material-link" style="color: #f3f4f6">Link do material</label>
-                <input type="url" name="caminho" id="material-link"  class="block mt-1 w-full">
+                <input type="text" name="caminho" id="material-link"  class="block mt-1 w-full">
             </div>
 
             <div class="mb-3 d-none" id="campo-upload">

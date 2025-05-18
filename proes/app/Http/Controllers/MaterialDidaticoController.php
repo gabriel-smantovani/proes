@@ -27,7 +27,7 @@ class MaterialDidaticoController extends Controller
             'titulo' => 'required|string|max:255',
             'tipo_de_arquivo' => 'required|in:link,upload',
             'caminho' => 'required_if:tipo_de_arquivo,link|nullable|url',
-            'arquivo' => 'required_if:tipo_de_arquivo,upload|nullable|file|mimes:pdf,docx,mp4,zip|max:20480', // até 20MB
+            'arquivo' => 'required_if:tipo_de_arquivo,upload|nullable|file|mimes:pdf,docx,mp4,zip|max:20480',
         ]);
 
         if ($request->tipo_de_arquivo === 'upload' && $request->hasFile('arquivo')) {
@@ -35,9 +35,13 @@ class MaterialDidaticoController extends Controller
             $caminho = 'storage/' . $path;
         } else {
             $caminho = $request->caminho;
+
+            if ($caminho && !str_starts_with($caminho, 'http://') && !str_starts_with($caminho, 'https://')) {
+                $caminho = 'https://' . $caminho;
+            }
         }
 
-        \App\Models\MaterialDidatico::create([
+        MaterialDidatico::create([
             'modulo_id' => $request->modulo_id,
             'titulo' => $request->titulo,
             'tipo_de_arquivo' => $request->tipo_de_arquivo,
@@ -71,7 +75,13 @@ class MaterialDidaticoController extends Controller
             $path = $request->file('arquivo')->store('materiais', 'public');
             $material->caminho = 'storage/' . $path;
         } elseif ($request->tipo_de_arquivo === 'link') {
-            $material->caminho = $request->caminho;
+            $caminho = $request->caminho;
+
+            if ($caminho && !str_starts_with($caminho, 'http://') && !str_starts_with($caminho, 'https://')) {
+                $caminho = 'https://' . $caminho;
+            }
+
+            $material->caminho = $caminho;
         }
 
         $material->save();
@@ -79,13 +89,18 @@ class MaterialDidaticoController extends Controller
         return redirect()->route('modulos.index')->with('success', 'Material atualizado com sucesso!');
     }
 
-    public function destroy(MaterialDidatico $material_didatico)
+    public function destroy(MaterialDidatico $material)
     {
-        dd($request->all());
+        try {
+            if ($material->tipo_de_arquivo !== 'link' && \Storage::exists($material->caminho)) {
+                \Storage::delete($material->caminho);
+            }
 
-        $material_didatico->delete();
+            $material->delete();
 
-        return redirect()->route('modulos.index')
-            ->with('success', 'Material excluído com sucesso!');
+            return redirect()->back()->with('success', 'Material excluído com sucesso!');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Erro ao excluir: ' . $e->getMessage());
+        }
     }
 }

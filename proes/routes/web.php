@@ -42,9 +42,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/conquistas', [ConquistaController::class, 'index'])->name('conquistas.index');
     Route::get('/materiais_didaticos/create/{modulo_id}', [MaterialDidaticoController::class, 'create'])->name('materiais_didaticos.create');
     Route::post('/materiais_didaticos', [MaterialDidaticoController::class, 'store'])->name('materiais_didaticos.store');
-    Route::get('/materiais_didaticos/{material_didatico}/edit', [MaterialDidaticoController::class, 'edit'])->name('materiais_didaticos.edit');
-    Route::patch('/materiais_didaticos', [MaterialDidaticoController::class, 'update'])->name('materiais_didaticos.update');
-    Route::delete('/materiais_didaticos}', [MaterialDidaticoController::class, 'destroy'])->name('materiais_didaticos.destroy');
+    Route::get('/materiais/{material}/edit', [MaterialDidaticoController::class, 'edit'])->name('materiais.edit');
+    Route::put('/materiais/{material}', [MaterialDidaticoController::class, 'update'])->name('materiais.update');
+    Route::delete('/materiais/{material}', [MaterialDidaticoController::class, 'destroy'])->name('materiais.destroy');
 });
 
 require __DIR__.'/auth.php';

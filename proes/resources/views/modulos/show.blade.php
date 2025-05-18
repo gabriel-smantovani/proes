@@ -10,6 +10,12 @@
     </div>
 @endif
 
+@if(session('error'))
+    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded mb-2">
+        {{ session('error') }}
+    </div>
+@endif
+
 <div class="container mt-4">
     <div class="text-center text-black">
         <h1 style="color: #f3f4f6; font-size: 2em">{{ $modulo->titulo }}</h1>
@@ -35,9 +41,14 @@
                 <p style="margin-left: 1em">{{ $material->titulo }}</p>
             </div>
             @if (auth()->user()?->tipo === 'professor')
-                <a href="{{ route('materiais_didaticos.edit', ['material_didatico' => $material->id]) }}" class="btn btn-danger" style="margin-right: 2em; border: 1px solid white; font-weight: bold">
+                <a href="{{ route('materiais.edit', ['material' => $material->id]) }}" class="btn btn-danger" style="margin-right: 2em; border: 1px solid white; font-weight: bold">
                     <i class="bi bi-pencil"></i>
                 </a>
+                <form action="{{ route('materiais.destroy', $material->id) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir este material?');">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="text-red-600 hover:underline">Excluir</button>
+                </form>
             @endif
             <div class="col-md-1 d-flex justify-content-end" style="width: 5%">
                 @php

@@ -15,6 +15,11 @@
                     <x-nav-link :href="route('modulos.index')" :active="request()->routeIs('modulos*')">
                         {{ __('Jornada') }}
                     </x-nav-link>
+                    @if (auth()->user()?->tipo === 'professor')
+                        <x-nav-link :href="route('placar_de_lideres.index')" :active="request()->routeIs('placar_de_lideres*')">
+                            {{ __('Placar de líderes') }}
+                        </x-nav-link>
+                    @endif
                     <x-nav-link :href="route('colecao.index')" :active="request()->routeIs('colecao*')">
                         {{ __('Minha coleção') }}
                     </x-nav-link>

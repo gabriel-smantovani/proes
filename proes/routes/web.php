@@ -11,6 +11,7 @@ use App\Http\Controllers\ResultadoFaseController;
 use App\Http\Controllers\LojaController;
 use App\Http\Controllers\ColecaoController;
 use App\Http\Controllers\ConquistaController;
+use App\Http\Controllers\PlacarDeLideresController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -22,6 +23,7 @@ Route::get('/dashboard', function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/meu-perfil', [ProfileController::class, 'index'])->name('profile.index');
+    Route::get('/profile/{user}', [ProfileController::class, 'show'])->name('profile.show');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -52,6 +54,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/perguntas/{pergunta}/edit', [PerguntaController::class, 'edit'])->name('perguntas.edit');
     Route::put('/perguntas/{pergunta}', [PerguntaController::class, 'update'])->name('perguntas.update');
     Route::delete('/perguntas/{pergunta}', [PerguntaController::class, 'destroy'])->name('perguntas.destroy');
+    Route::get('/maiores-pontuadores', [PlacarDeLideresController::class, 'index'])->name('placar_de_lideres.index');
 });
 
 require __DIR__.'/auth.php';

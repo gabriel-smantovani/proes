@@ -3,7 +3,7 @@
 @section('content')
 <div class="container mt-4 flex-column align-items-center justify-content-center">
     <div class="text-center">
-        <h2 style="color: #f3f4f6; font-size: 2em">Adicione um material didático para o módulo "{{ $modulo->titulo }}"</h2>
+        <h2 style="color: #f3f4f6; font-size: 2em">Adicione um material de apoio para o módulo: {{ $modulo->titulo }}</h2>
     </div>
 
     <div class="w-full sm:max-w-2xl mt-6 px-6 py-4 shadow-md mx-auto overflow-hidden sm:rounded-lg" style="background-color: #1f2937">

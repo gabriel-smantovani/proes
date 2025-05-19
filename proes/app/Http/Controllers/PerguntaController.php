@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Fase;
 use App\Models\Pergunta;
+use Illuminate\Support\Facades\Auth;
 
 class PerguntaController extends Controller
 {
@@ -47,7 +48,12 @@ class PerguntaController extends Controller
 
     public function edit(Pergunta $pergunta)
     {
-        $pergunta->load('respostas');
+        $pergunta->load('fase', 'respostas');
+
+        if (auth()->user()->id !== $pergunta->fase->user_id) {
+            abort(403, 'Acesso negado. Apenas quem elaborou o conteúdo pode alterá-lo ou excluí-lo.');
+        }
+
         return view('perguntas.edit', compact('pergunta'));
     }
 

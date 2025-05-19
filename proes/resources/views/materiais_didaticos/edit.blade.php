@@ -35,7 +35,7 @@
             <div class="mb-4" id="campo-upload" style="{{ $material->tipo_de_arquivo === 'upload' ? '' : 'display: none;' }}">
                 <label class="block font-semibold" style="color: #f3f4f6">Arquivo:</label>
                 <input type="file" name="arquivo" class="w-full" style="color: #f3f4f6">
-                <p class="text-sm mt-1" style="color: #9ca3af"">Arquivo atual: {{ $material->caminho }}</p>
+                <p class="text-sm mt-1" style="color: #9ca3af"">Arquivo atual: {{ str_replace('storage/materiais/', '', $material->caminho) }}</p>
             </div>
 
             <div class="text-right mt-4 d-flex justify-content-end">

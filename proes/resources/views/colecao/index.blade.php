@@ -1,32 +1,65 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container mt-4 text-center">
-    <h1 style="color: #f3f4f6; font-size: 2em">Minha coleção</h1>
+@if (session('success'))
+    <div class="alert alert-success text-center">{{ session('success') }}</div>
+@elseif (session('error'))
+    <div class="alert alert-danger text-center">{{ session('error') }}</div>
+@elseif (session('info'))
+    <div class="alert alert-info text-center">{{ session('info') }}</div>
+@endif
 
-    @if (session('success'))
-        <div class="alert alert-success text-center">{{ session('success') }}</div>
-    @elseif (session('error'))
-        <div class="alert alert-danger text-center">{{ session('error') }}</div>
-    @elseif (session('info'))
-        <div class="alert alert-info text-center">{{ session('info') }}</div>
-    @endif
+<div class="container mt-4 text-center">
+    <h1 style="color: #f3f4f6; font-size: 1.5em">Acessórios para cabeça</h1>
 
     <div class="row justify-content-center mt-4">
         @foreach ($avatares as $avatar)
             @if ($usuario->avatares->contains($avatar->id))
-                <div class="col-md-3 mb-4">
-                    <div class="card h-100" style="display: flex; flex-direction: column; align-items: center; background-color: #1f2937; color: #f3f4f6">
-                        <img src="{{ asset('storage/' . $avatar->imagem) }}" class="card-img-top" alt="{{ $avatar->nome }}" style="width: 10em; height: 10em; margin-top: 1em; background-color: #1f2937">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $avatar->nome }}</h5>
-                            <form action="{{ route('colecao.equipar', $avatar->id) }}" method="POST">
-                                @csrf
-                                <button class="btn btn-primary" style="background-color: #3730a3; border: 1px solid #34d399">Equipar</button>
-                            </form>
+                @if ($avatar->equipado_em == 'cabeca')
+                    <div class="col-md-3 mb-4">
+                        <div class="card h-100" style="display: flex; flex-direction: column; align-items: center; background-color: #1f2937; color: #f3f4f6">
+                            <img src="{{ asset('storage/' . $avatar->imagem) }}" class="card-img-top" alt="{{ $avatar->nome }}" style="width: 8em; height: 8em; margin-top: 1em; background-color: #1f2937">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $avatar->nome }}</h5>
+                                @if ($usuario->avatar_cabeca == $avatar->imagem || $usuario->avatar_traje == $avatar->imagem)
+                                    <button class="btn btn-secondary" disabled>Já equipado</button>
+                                @else
+                                    <form action="{{ route('colecao.equipar', $avatar->id) }}" method="POST">
+                                        @csrf
+                                        <button class="btn btn-primary" style="background-color: #3730a3; border: 1px solid #34d399">Equipar</button>
+                                    </form>
+                                @endif
+                            </div>
                         </div>
                     </div>
-                </div>
+                @endif
+            @endif
+        @endforeach
+    </div>
+
+    <h1 style="color: #f3f4f6; font-size: 1.5em">Trajes</h1>
+
+    <div class="row justify-content-center mt-4">
+        @foreach ($avatares as $avatar)
+            @if ($usuario->avatares->contains($avatar->id))
+                @if ($avatar->equipado_em == 'traje')
+                    <div class="col-md-3 mb-4">
+                        <div class="card h-100" style="display: flex; flex-direction: column; align-items: center; background-color: #1f2937; color: #f3f4f6">
+                            <img src="{{ asset('storage/' . $avatar->imagem) }}" class="card-img-top" alt="{{ $avatar->nome }}" style="width: 8em; height: 16em; margin-top: 1em; background-color: #1f2937">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $avatar->nome }}</h5>
+                                @if ($usuario->avatar_cabeca == $avatar->imagem || $usuario->avatar_traje == $avatar->imagem)
+                                    <button class="btn btn-secondary" disabled>Já equipado</button>
+                                @else
+                                    <form action="{{ route('colecao.equipar', $avatar->id) }}" method="POST">
+                                        @csrf
+                                        <button class="btn btn-primary" style="background-color: #3730a3; border: 1px solid #34d399">Equipar</button>
+                                    </form>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                @endif
             @endif
         @endforeach
     </div>

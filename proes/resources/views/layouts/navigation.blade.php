@@ -15,23 +15,23 @@
                     <x-nav-link :href="route('modulos.index')" :active="request()->routeIs('modulos*')">
                         {{ __('Jornada') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('loja.index')" :active="request()->routeIs('loja*')">
-                        {{ __('Loja') }}
-                    </x-nav-link>
                     <x-nav-link :href="route('colecao.index')" :active="request()->routeIs('colecao*')">
                         {{ __('Minha coleção') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('loja.index')" :active="request()->routeIs('loja*')">
+                        {{ __('Loja') }}
+                    </x-nav-link>
                 </div>
-            </div>
 
-            <div class="hidden sm:flex sm:items-center sm:ms-6">
-                <div class="flex items-right space-x-2 text-white">
-                    <p>
-                        <i class="bi bi-coin"></i>
-                        <span>
-                            {{ Auth::user()->moedas }}
-                        </span>
-                    </p>
+                <div class="hidden sm:flex sm:items-center sm:ms-6">
+                    <div class="flex items-right space-x-2 text-white">
+                        <p>
+                            <i class="bi bi-coin"></i>
+                            <span>
+                                {{ Auth::user()->moedas }}
+                            </span>
+                        </p>
+                    </div>
                 </div>
             </div>
 

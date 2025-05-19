@@ -12,6 +12,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('modulo_id')->constrained()->onDelete('cascade');
             $table->string('titulo');
+            $table->foreignId('user_id')->nullable();
             $table->timestamps();
         });
     }

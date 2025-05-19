@@ -14,6 +14,7 @@ return new class extends Migration
             $table->string('titulo');
             $table->string('caminho');
             $table->string('tipo_de_arquivo');
+            $table->foreignId('user_id')->nullable();
             $table->timestamps();
         });
     }

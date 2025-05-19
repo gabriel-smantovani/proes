@@ -8,6 +8,7 @@ use App\Models\Modulo;
 use App\Models\Fase;
 use App\Models\Pergunta;
 use App\Models\Resposta;
+use Illuminate\Support\Facades\Auth;
 
 class FaseController extends Controller
 {
@@ -50,10 +51,20 @@ class FaseController extends Controller
             'perguntas.*.respostas.*.desc' => 'required|string',
         ]);
 
-        $fase = Fase::create([
-            'modulo_id' => $request->modulo_id,
-            'titulo' => $request->titulo,
-        ]);
+        $usuario = Auth::user();
+        if ($usuario) {
+            $fase = Fase::create([
+                'modulo_id' => $request->modulo_id,
+                'titulo' => $request->titulo,
+                'user_id' => $usuario->id,
+            ]);
+        } else {
+                $fase = Fase::create([
+                'modulo_id' => $request->modulo_id,
+                'titulo' => $request->titulo,
+            ]);
+        }
+
 
         foreach ($request->perguntas as $perguntaIndex => $perguntaData) {
             $pergunta = Pergunta::create([

@@ -4,9 +4,24 @@
 
 @section('content')
 <div class="container mt-4">
-    <div class="text-center text-black">
-        <h1 style="color: #f3f4f6; font-size: 2em">Escolha um Módulo</h1>
+
+    <div style="display: flex; width: 100%; justify-content: center">
+        <i class="bi bi-compass" style="color: #f3f4f6; font-size: 5em"></i>
     </div>
+
+    @if (session('success'))
+        <div class="w-full flex justify-center mt-4">
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        </div>
+    @endif
+
+    @if(session('error'))
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded mb-2">
+            {{ session('error') }}
+        </div>
+    @endif
 
     <div class="row justify-content-center mt-4">
 

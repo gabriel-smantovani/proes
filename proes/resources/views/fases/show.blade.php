@@ -5,7 +5,7 @@
 @section('content')
 <div class="container mt-4">
     <div class="text-center text-black">
-        <h1 style="color: #f3f4f6; font-size: 2em">{{ $modulo->titulo }} - {{ $fase->titulo }}</h1>
+        <h1 style="color: #f3f4f6; font-size: 2em">{{ $fase->titulo }}</h1>
     </div>
 
     <form id="fase-form" action="{{ route('fases.finalizar', $fase->id) }}" method="POST" class="container mt-4">
@@ -14,7 +14,7 @@
         <div id="perguntas-container">
             @foreach ($perguntas as $index => $pergunta)
                 <div class="pergunta" style="{{ $index !== 0 ? 'display:none;' : '' }}">
-                    <p class="mb-3 text-justify" style="font-size: 1.5em; text-align: justify; color: #f3f4f6"><strong>{{ $pergunta->desc }}</strong></p>
+                    <p class="mb-3 text-justify" style="font-size: 1.5em; text-align: justify; color: #f3f4f6"><strong>{{ $index+1 }}. {{ $pergunta->desc }}</strong></p>
                     @foreach ($pergunta->respostas as $resposta)
                         <div class="form-check mb-2">
                             <input class="form-check-input" type="radio" name="respostas[{{ $pergunta->id }}]" value="{{ $resposta->id }}" id="resposta-{{ $resposta->id }}" style="background-color: #3730a3">

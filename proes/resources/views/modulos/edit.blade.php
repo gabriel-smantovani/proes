@@ -21,9 +21,11 @@
                 <textarea name="desc" rows="4" cols="50" class="sm:rounded-lg" style="width: 100%; height: 15em; resize: none; margin-top: 1em">{{ old('desc', $modulo->desc ?? '') }}</textarea>
             </div>
 
-            <div class="text-right mt-4 d-flex justify-content-end">
-                <button type="submit" class="btn btn-primary" style="background-color: #3730a3; border: 1px solid #34d399">Salvar</button>
+            <div style="display: flex; justify-content: end">
+                <button type="submit" class="btn btn-primary" style="background-color: #3730a3; border: 1px solid #34d399; margin-right: 1em">Salvar alterações</button>
+                <a href="{{ route('modulos.show', $modulo->id) }}" class="btn btn-danger" style="margin-right: 1em">Cancelar</a>
             </div>
+            
         </form>
     </div>
 </div>

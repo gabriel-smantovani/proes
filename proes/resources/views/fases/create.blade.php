@@ -5,7 +5,7 @@
 @section('content')
 <div class="container mt-4">
     <div class="text-center text-black">
-        <h2 style="color: #f3f4f6; font-size: 2em">Crie sua fase para o módulo "{{ $modulo->titulo }}"</h2>
+        <h2 style="color: #f3f4f6; font-size: 2em">Crie sua fase para o módulo: {{ $modulo->titulo }}</h2>
     </div>
 
     <div class="w-full sm:max-w-5xl mt-6 px-6 py-4 shadow-md mx-auto overflow-hidden sm:rounded-lg" style="background-color: #1f2937">
@@ -25,8 +25,9 @@
             <button type="button" onclick="adicionarPergunta()" class="btn btn-primary mt-1" style="background-color: #3730a3; border: 1px solid #34d399">+ Adicionar Pergunta</button>
 
             <br><br>
-            <div class="text-right mt-4 d-flex justify-content-end">
-                <button type="submit" class="btn btn-primary" style="background-color: #3730a3; border: 1px solid #34d399">Adicionar fase</button>
+            <div style="display: flex; justify-content: end">
+                <button type="submit" class="btn btn-primary" style="background-color: #3730a3; border: 1px solid #34d399; margin-right: 1em">Criar</button>
+                <a href="{{ route('modulos.show', $modulo->id) }}" class="btn btn-danger" style="margin-right: 1em">Cancelar</a>
             </div>
         </form>
     </div>

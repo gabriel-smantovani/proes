@@ -39,8 +39,9 @@
                 <input type="file" name="arquivo" id="material-upload"  class="block mt-1 w-full" style="color: #f3f4f6">
             </div>
 
-            <div class="text-right mt-4 d-flex justify-content-end">
-                <button type="submit" class="btn btn-primary" style="background-color: #3730a3; border: 1px solid #34d399">Adicionar</button>
+            <div style="display: flex; justify-content: end">
+                <button type="submit" class="btn btn-primary" style="background-color: #3730a3; border: 1px solid #34d399; margin-right: 1em">Adicionar</button>
+                <a href="{{ route('modulos.show', $modulo->id) }}" class="btn btn-danger" style="margin-right: 1em">Cancelar</a>
             </div>
         </form>
 

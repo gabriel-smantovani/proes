@@ -25,10 +25,10 @@ class PerguntaController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'perguntas.respostas.*.desc' => 'required|string',
+            'perguntas.resposta_correta' => 'required',
             'desc' => 'required|string',
             'fase_id' => 'required|exists:fases,id',
-            'respostas.*.desc' => 'required|string',
-            'respostas.*.correta' => 'nullable|boolean',
         ]);
 
         $pergunta = \App\Models\Pergunta::create([
@@ -36,10 +36,10 @@ class PerguntaController extends Controller
             'fase_id' => $request->fase_id,
         ]);
 
-        foreach ($request->respostas as $resposta) {
+        foreach ($request->input('perguntas.respostas', []) as $index => $resposta) {
             $pergunta->respostas()->create([
                 'desc' => $resposta['desc'],
-                'correta' => isset($resposta['correta']),
+                'correta' => $request->input('perguntas.resposta_correta') == $index,
             ]);
         }
 

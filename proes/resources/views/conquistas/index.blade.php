@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="container mt-4 text-center">
-    <i class="bi bi-award" style="color: #f3f4f6; font-size: 4em"></i>
+    <i class="bi bi-award" style="color: #f3f4f6; font-size: 5em"></i>
 
     <div class="row justify-content-center mt-4">
         @foreach ($conquistas as $conquista)

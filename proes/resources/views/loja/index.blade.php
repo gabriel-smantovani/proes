@@ -12,7 +12,14 @@
 @endif
 
 <div class="container mt-4 text-center">
-    <h1 style="color: #f3f4f6; font-size: 1.5em">Acessórios para cabeça</h1>
+
+    <i class="bi bi-shop-window" style="color: #f3f4f6; font-size: 5em"></i>
+
+    <div class="border rounded p-3"  style="margin-top: 1em; background-color: #1f2937; color: #f3f4f6">
+        <div style="display: flex; justify-content: center; align-items: center">
+            <h1 style="color: #f3f4f6; font-size: 1.2em">Faces</h1>
+        </div>
+    </div>
 
     <div class="row justify-content-center mt-4">
         @foreach ($avatares as $avatar)
@@ -38,7 +45,12 @@
         @endforeach
     </div>
 
-    <h1 style="color: #f3f4f6; font-size: 1.5em">Trajes</h1>
+    <div class="border rounded p-3"  style="margin-top: 1em; background-color: #1f2937; color: #f3f4f6">
+        <div style="display: flex; justify-content: center; align-items: center">
+            <h1 style="color: #f3f4f6; font-size: 1.2em">Trajes</h1>
+        </div>
+    </div>
+    
     <div class="row justify-content-center mt-4">
         @foreach ($avatares as $avatar)
             @if ($avatar->equipado_em == 'traje')

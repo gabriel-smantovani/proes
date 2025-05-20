@@ -47,7 +47,7 @@
             
 
             <x-primary-button class="ms-3" style="background-color: #3730a3">
-                {{ __('Log in') }}
+                {{ __('Entrar') }}
             </x-primary-button>
         </div>
     </form>

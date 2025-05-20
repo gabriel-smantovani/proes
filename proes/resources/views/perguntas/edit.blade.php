@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Pergunta')
+
 @section('content')
 <div class="container mt-4 flex-column align-items-center justify-content-center">
     <div class="text-center">

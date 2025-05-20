@@ -1,13 +1,22 @@
 @extends('layouts.app')
 
+@section('title', 'Módulo')
+
 @section('content')
 
 <div class="container mt-4">
     <div class="text-center text-black">
         <h1 style="color: #f3f4f6; font-size: 2em">{{ $modulo->titulo }}</h1>
     </div>
-    <div class="text-center text-black">
-        <p style="color: #f3f4f6; font-size: 1em">{{ $modulo->desc }}</p>
+    @if (auth()->user()?->tipo === 'professor')
+        <div style="display: flex; justify-content: end">
+            <a href="{{ route('modulos.edit', ['modulo' => $modulo->id]) }}" class="btn btn-warning btn-sm" style="border: 1px solid white; font-weight: bold; margin-right: 1em">
+                <i class="bi bi-pencil-fill"></i>
+            </a>
+        </div>
+    @endif
+    <div style="margin: 0 2em 0 2em">
+        <p style="color: #f3f4f6; font-size: 1em">{!! nl2br(e($modulo->desc)) !!}</p>
     </div>
 
     @if (session('success'))

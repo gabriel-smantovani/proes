@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Perguntas')
+
 @section('content')
 <div class="container mt-4">
     <div class="border rounded p-3"  style="background-color: #1f2937; color: #f3f4f6; margin-bottom: 1em">

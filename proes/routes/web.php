@@ -30,6 +30,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/modulos', [ModuloController::class, 'index'])->name('modulos.index');
     Route::get('/modulos/{id}', [ModuloController::class, 'show'])->name('modulos.show');
+    Route::get('/modulos/{modulo}/edit', [ModuloController::class, 'edit'])->name('modulos.edit');
+    Route::put('/modulos/{modulo}', [ModuloController::class, 'update'])->name('modulos.update');
     Route::get('/fases', [FaseController::class, 'index'])->name('fases.index');
     Route::get('/fases/{id}', [FaseController::class, 'show'])->name('fases.show');
     Route::get('/fases/create/{modulo_id}', [FaseController::class, 'create'])->name('fases.create');

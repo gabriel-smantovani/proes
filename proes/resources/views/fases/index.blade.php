@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Fase')
+
 @section('content')
 <div class="max-w-3xl mx-auto mt-6">
     <h1 class="text-2xl font-bold mb-4">Fases Cadastradas</h1>

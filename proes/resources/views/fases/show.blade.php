@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Fase')
+
 @section('content')
 <div class="container mt-4">
     <div class="text-center text-black">

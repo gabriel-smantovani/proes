@@ -1,8 +1,10 @@
 @extends('layouts.app')
 
+@section('title', 'Conquistas')
+
 @section('content')
 <div class="container mt-4 text-center">
-    <h1 style="color: #f3f4f6; font-size: 2em">Minhas conquistas</h1>
+    <i class="bi bi-award" style="color: #f3f4f6; font-size: 4em"></i>
 
     <div class="row justify-content-center mt-4">
         @foreach ($conquistas as $conquista)

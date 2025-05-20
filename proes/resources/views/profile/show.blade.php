@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Perfis')
+
 @section('content')
 
     <div class="py-12">
@@ -39,6 +41,15 @@
                                 @endif
                             </div>
                         </div>
+                        @if (auth()->user()?->id === $user->id)
+                            <div>
+                                <div class="max-w-xl d-flex justify-content-end">
+                                    <a href="{{ route('profile.edit') }}" class="btn btn-success" style="background-color: #3730a3; border: 1px solid #34d399">
+                                        <i class="bi bi-pencil"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>

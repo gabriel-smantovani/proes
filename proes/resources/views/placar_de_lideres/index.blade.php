@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Placar de líderes')
+
 @section('content')
 
 <div class="container mt-4">

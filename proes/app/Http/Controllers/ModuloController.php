@@ -24,4 +24,22 @@ class ModuloController extends Controller
             'materiais_didaticos' => $modulo->materiais_didaticos,
         ]);
     }
+
+    
+    public function edit(Modulo $modulo)
+    {
+        return view('modulos.edit', compact('modulo'));
+    }
+
+    public function update(Request $request, Modulo $modulo)
+    {
+        $request->validate([
+            'titulo' => 'required|string|max:255',
+            'desc' => 'nullable|string',
+        ]);
+
+        $modulo->update($request->only('titulo', 'desc'));
+
+        return redirect()->route('modulos.show', $modulo->id)->with('success', 'Módulo atualizado com sucesso!');
+    }
 }

@@ -17,7 +17,7 @@
 
         <div class="pergunta" style="margin-bottom: 20px; padding: 10px">
             <label style="color: #f3f4f6">Pergunta:</label>
-            <input type="text" name="desc" maxlength="2000" class="block mt-1 w-full" required>
+            <textarea name="desc" rows="4" cols="50" class="sm:rounded-lg" maxlength="2000" style="width: 100%; height: 15em; resize: none; margin-top: 1em" required></textarea>
 
             <div class="respostas mt-2">
                 <h4 style="color: #f3f4f6">Respostas:</h4>

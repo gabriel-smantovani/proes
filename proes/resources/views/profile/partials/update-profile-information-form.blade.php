@@ -19,7 +19,7 @@
 
         <div>
             <x-input-label for="name" :value="__('Nome')" style="color: #f3f4f6;" />
-            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
+            <x-text-input id="name" name="name" type="text" maxlength="50" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
         </div>
 
@@ -49,19 +49,19 @@
 
         <div>
             <x-input-label for="instituicao" :value="__('Instituição de ensino')" style="color: #f3f4f6;" />
-            <x-text-input id="instituicao" name="instituicao_ensino" type="text" class="mt-1 block w-full" :value="old('instituicao_ensino', $user->instituicao_ensino)" autofocus autocomplete="instituicao_ensino" />
+            <x-text-input id="instituicao" name="instituicao_ensino" type="text" maxlength="100" class="mt-1 block w-full" :value="old('instituicao_ensino', $user->instituicao_ensino)" autofocus autocomplete="instituicao_ensino" />
             <x-input-error class="mt-2" :messages="$errors->get('instituicao_ensino')" />
         </div>
 
         <div>
             <x-input-label for="github" :value="__('Link do GitHub')" style="color: #f3f4f6;" />
-            <x-text-input id="github" name="link_github" type="text" class="mt-1 block w-full" :value="old('link_github', $user->link_github)" autofocus autocomplete="link_github" />
+            <x-text-input id="github" name="link_github" type="text" maxlength="100" class="mt-1 block w-full" :value="old('link_github', $user->link_github)" autofocus autocomplete="link_github" />
             <x-input-error class="mt-2" :messages="$errors->get('link_github')" />
         </div>
 
         <div>
             <x-input-label for="linkedin" :value="__('Link do Linkedin')" style="color: #f3f4f6;" />
-            <x-text-input id="linkedin" name="link_linkedin" type="text" class="mt-1 block w-full" :value="old('link_linkedin', $user->link_linkedin)" autofocus autocomplete="link_linkedin" />
+            <x-text-input id="linkedin" name="link_linkedin" type="text" maxlength="100" class="mt-1 block w-full" :value="old('link_linkedin', $user->link_linkedin)" autofocus autocomplete="link_linkedin" />
             <x-input-error class="mt-2" :messages="$errors->get('link_linkedin')" />
         </div>
 

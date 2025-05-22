@@ -17,7 +17,7 @@
 
             <div class="mb-3">
                 <label for="material-titulo" style="color: #f3f4f6">Título</label>
-                <input type="text" name="titulo" id="material-titulo"  class="block mt-1 w-full" required>
+                <input type="text" name="titulo" id="material-titulo" maxlength="70" class="block mt-1 w-full" required>
             </div>
 
             <div class="mb-3">

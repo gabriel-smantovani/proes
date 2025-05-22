@@ -10,8 +10,8 @@ return new class extends Migration
     {
         Schema::create('modulos', function (Blueprint $table) {
             $table->id();
-            $table->string('titulo');
-            $table->string('desc');
+            $table->string('titulo', 50);
+            $table->string('desc', 1000);
             $table->string('img_link');
             $table->unsignedBigInteger('conquista_necessaria_id')->nullable();
             $table->timestamps();

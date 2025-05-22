@@ -17,7 +17,7 @@
 
             <div class="mb-3">
                 <label for="titulo" style="color: #f3f4f6">Título da Fase:</label>
-                <input type="text" name="titulo" class="block mt-1 w-full" required>
+                <input type="text" name="titulo" maxlength="70" class="block mt-1 w-full" required>
             </div>
 
             <h3 style="color: #f3f4f6">Perguntas</h3>
@@ -43,7 +43,7 @@ function adicionarPergunta() {
     const perguntaHTML = `
         <div class="pergunta" style="margin-bottom: 20px; padding: 10px; border-top: 2px solid #ccc;">
             <label style="color: #f3f4f6">Pergunta:</label>
-            <input type="text" name="perguntas[${perguntaCount}][desc]" class="block mt-1 w-full" required>
+            <input type="text" name="perguntas[${perguntaCount}][desc]" maxlength="1000" class="block mt-1 w-full" required>
 
             <div class="respostas mt-2">
                 <h4 style="color: #f3f4f6">Respostas</h4>
@@ -64,7 +64,7 @@ function adicionarResposta(perguntaIndex) {
 
     const respostaHTML = `
         <div class="d-flex justify-content-between align-items-center" style="margin-bottom: 5px;">
-            <input type="text" name="perguntas[${perguntaIndex}][respostas][${respostaCount}][desc]" placeholder="Resposta" class="block mt-1" style="width: 93%" required>
+            <input type="text" name="perguntas[${perguntaIndex}][respostas][${respostaCount}][desc]" placeholder="Resposta" maxlength="300" class="block mt-1" style="width: 93%" required>
             <input 
                 type="radio" 
                 name="perguntas[${perguntaIndex}][resposta_correta]" 

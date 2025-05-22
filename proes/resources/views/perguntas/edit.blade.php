@@ -16,14 +16,14 @@
 
             <div class="pergunta" style="margin-bottom: 20px; padding: 10px">
                 <label style="color: #f3f4f6">Pergunta:</label>
-                <input type="text" name="desc" class="form-control" value="{{ old('desc', $pergunta->desc) }}" class="block mt-1 w-full" required>
+                <input type="text" name="desc" maxlength="1000" class="form-control" value="{{ old('desc', $pergunta->desc) }}" class="block mt-1 w-full" required>
 
                 <div class="respostas mt-2">
                     <h4 style="color: #f3f4f6">Respostas</h4>
                     <div id="respostas">
                         @foreach ($pergunta->respostas as $resposta)
                             <div class="d-flex justify-content-between align-items-center" style="margin-bottom: 5px;">
-                                <input type="text" name="respostas[{{ $resposta->id }}][desc]" class="block mt-1"
+                                <input type="text" name="respostas[{{ $resposta->id }}][desc]" maxlength="300" class="block mt-1"
                                     value="{{ old("respostas.{$resposta->id}.desc", $resposta->desc) }}"
                                     style="width: 93%" required>
                                 <input 

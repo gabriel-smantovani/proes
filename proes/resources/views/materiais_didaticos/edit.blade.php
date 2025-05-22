@@ -18,7 +18,7 @@
 
             <div class="mb-3">
                 <label for="material-titulo" style="color: #f3f4f6">Título</label>
-                <input type="text" name="titulo" value="{{ old('titulo', $material->titulo) }}" class="block mt-1 w-full" required>
+                <input type="text" name="titulo" value="{{ old('titulo', $material->titulo) }}" maxlength="70" class="block mt-1 w-full" required>
             </div>
 
             <div class="mb-3">

@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('materiais_didaticos', function (Blueprint $table) {
             $table->id();
             $table->foreignId('modulo_id')->constrained()->onDelete('cascade');
-            $table->string('titulo');
+            $table->string('titulo', 70);
             $table->string('caminho');
             $table->string('tipo_de_arquivo');
             $table->foreignId('user_id')->nullable();

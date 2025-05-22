@@ -18,7 +18,7 @@
 
             <div class="mt-3 mb-3" style="display: flex; flex-direction: column; justify-content: center">
                 <label for="modulo-desc" style="color: #f3f4f6">Descreva o módulo (insira informações como os objetivos, habilidades e competências adquiridas pelos alunos, como na ementa)</label>
-                <textarea name="desc" rows="4" cols="50" class="sm:rounded-lg" style="width: 100%; height: 15em; resize: none; margin-top: 1em">{{ old('desc', $modulo->desc ?? '') }}</textarea>
+                <textarea name="desc" rows="4" cols="50" class="sm:rounded-lg" maxlength="1000" style="width: 100%; height: 15em; resize: none; margin-top: 1em">{{ old('desc', $modulo->desc ?? '') }}</textarea>
             </div>
 
             <div style="display: flex; justify-content: end">

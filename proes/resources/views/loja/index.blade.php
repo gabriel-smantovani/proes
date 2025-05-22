@@ -3,17 +3,26 @@
 @section('title', 'Loja')
 
 @section('content')
-@if (session('success'))
-    <div class="alert alert-success text-center">{{ session('success') }}</div>
-@elseif (session('error'))
-    <div class="alert alert-danger text-center">{{ session('error') }}</div>
-@elseif (session('info'))
-    <div class="alert alert-info text-center">{{ session('info') }}</div>
-@endif
 
 <div class="container mt-4 text-center">
 
     <i class="bi bi-shop-window" style="color: #f3f4f6; font-size: 5em"></i>
+
+    @if (session('success'))
+        <div class="w-full flex justify-center mt-4">
+            <div class="alert alert-success" style="background-color: #34d399">
+                {{ session('success') }}
+            </div>
+        </div>
+    @endif
+
+    @if(session('error'))
+        <div class="w-full flex justify-center mt-4">
+            <div class="border border-red-400 text-red-700 px-4 py-2 rounded mb-2" style="background-color: #f43f5e">
+                {{ session('error') }}
+            </div>
+        </div>
+    @endif
 
     <div class="border rounded p-3"  style="margin-top: 1em; background-color: #1f2937; color: #f3f4f6">
         <div style="display: flex; justify-content: center; align-items: center">

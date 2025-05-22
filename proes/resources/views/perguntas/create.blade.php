@@ -17,7 +17,7 @@
 
         <div class="pergunta" style="margin-bottom: 20px; padding: 10px">
             <label style="color: #f3f4f6">Pergunta:</label>
-            <input type="text" name="desc" maxlength="1000" class="block mt-1 w-full" required>
+            <input type="text" name="desc" maxlength="2000" class="block mt-1 w-full" required>
 
             <div class="respostas mt-2">
                 <h4 style="color: #f3f4f6">Respostas:</h4>

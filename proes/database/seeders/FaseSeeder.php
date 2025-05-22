@@ -11,17 +11,17 @@ class FaseSeeder extends Seeder
     public function run(): void
     {
         Fase::updateOrCreate(
-            ['modulo_id' => '1', 'titulo' => 'Fase 1 módulo 1'],
+            ['modulo_id' => '1', 'titulo' => 'Fase 1'],
             []
         );
 
         Fase::updateOrCreate(
-            ['modulo_id' => '1', 'titulo' => 'Fase 2 módulo 1'],
+            ['modulo_id' => '1', 'titulo' => 'Fase 2'],
             []
         );
         
         Fase::updateOrCreate(
-            ['modulo_id' => '1', 'titulo' => 'Fase 3 módulo 1'],
+            ['modulo_id' => '1', 'titulo' => 'Fase 3'],
             []
         );
 

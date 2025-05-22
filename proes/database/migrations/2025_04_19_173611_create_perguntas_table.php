@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('perguntas', function (Blueprint $table) {
             $table->id();
             $table->foreignId('fase_id')->constrained()->onDelete('cascade');
-            $table->string('desc', 1000);
+            $table->string('desc', 2000);
             $table->timestamps();
         });
     }

@@ -14,11 +14,11 @@
         <div id="perguntas-container">
             @foreach ($perguntas as $index => $pergunta)
                 <div class="pergunta" style="{{ $index !== 0 ? 'display:none;' : '' }}">
-                    <p class="mb-3 text-justify" style="font-size: 1.5em; text-align: justify; color: #f3f4f6"><strong>{{ $index+1 }}. {{ $pergunta->desc }}</strong></p>
+                    <p class="mb-3 text-justify" style="font-size: 1.2em; text-align: justify; color: #f3f4f6">{{ $index+1 }}. {!! nl2br(e($pergunta->desc)) !!}</p>
                     @foreach ($pergunta->respostas as $resposta)
                         <div class="form-check mb-2">
                             <input class="form-check-input" type="radio" name="respostas[{{ $pergunta->id }}]" value="{{ $resposta->id }}" id="resposta-{{ $resposta->id }}" style="background-color: #3730a3">
-                            <label class="form-check-label" for="resposta-{{ $resposta->id }}" style="font-size: 1.2em; color: #9ca3af">
+                            <label class="form-check-label" for="resposta-{{ $resposta->id }}" style="font-size: 1.2em; color: #9ca3af; cursor: pointer">
                                 {{ $resposta->desc }}
                             </label>
                         </div>

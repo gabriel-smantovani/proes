@@ -29,5 +29,25 @@ class AvatarSeeder extends Seeder
                 'equipado_em' => 'traje'
             ]
         );
+
+        Avatar::updateOrCreate(
+            ['id' => '3'],
+            [
+                'nome' => 'Cabeça de orc verde',
+                'imagem' => 'greenhead.png',
+                'preco' => 1,
+                'equipado_em' => 'cabeca'
+            ]
+        );
+
+        Avatar::updateOrCreate(
+            ['id' => '4'],
+            [
+                'nome' => 'Traje de orc verde',
+                'imagem' => 'greensuit.png',
+                'preco' => 1,
+                'equipado_em' => 'traje'
+            ]
+        );
     }
 }

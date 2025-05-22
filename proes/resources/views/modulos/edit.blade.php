@@ -22,8 +22,8 @@
             </div>
 
             <div style="display: flex; justify-content: end">
-                <button type="submit" class="btn btn-primary" style="background-color: #3730a3; border: 1px solid #34d399; margin-right: 1em">Salvar alterações</button>
                 <a href="{{ route('modulos.show', $modulo->id) }}" class="btn btn-danger" style="margin-right: 1em">Cancelar</a>
+                <button type="submit" class="btn btn-primary" style="background-color: #3730a3; border: 1px solid #34d399; margin-right: 1em">Salvar alterações</button>
             </div>
             
         </form>

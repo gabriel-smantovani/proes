@@ -14,80 +14,80 @@ class RespostaSeeder extends Seeder
 
         Resposta::updateOrCreate(
             ['id' => '1'],
-            ['pergunta_id' => '1', 'desc' => 'resposta 1, correta', 'correta' => '1']
+            ['pergunta_id' => '1', 'desc' => 'O software deve ser operacionalizado no sistema Linux.', 'correta' => '0']
         );
 
         Resposta::updateOrCreate(
             ['id' => '2'],
-            ['pergunta_id' => '1', 'desc' => 'resposta 2, errada', 'correta' => '0']
+            ['pergunta_id' => '1', 'desc' => ' O tempo de desenvolvimento não deve ultrapassar seis meses.', 'correta' => '0']
         );
 
         Resposta::updateOrCreate(
             ['id' => '3'],
-            ['pergunta_id' => '1', 'desc' => 'resposta 3, errada', 'correta' => '0']
+            ['pergunta_id' => '1', 'desc' => 'O software deve emitir relatórios de compras a cada quinze dias', 'correta' => '1']
         );
 
         Resposta::updateOrCreate(
             ['id' => '4'],
-            ['pergunta_id' => '1', 'desc' => 'resposta 4, errada', 'correta' => '0']
+            ['pergunta_id' => '1', 'desc' => 'O tempo de resposta do sistema não deve ultrapassar 30 segundos.', 'correta' => '0']
         );
 
         Resposta::updateOrCreate(
             ['id' => '5'],
-            ['pergunta_id' => '2', 'desc' => 'resposta 1, correta', 'correta' => '1']
+            ['pergunta_id' => '1', 'desc' => ' A base de dados deve ser protegida para acesso apenas de usuários autorizados', 'correta' => '0']
         );
 
         Resposta::updateOrCreate(
             ['id' => '6'],
-            ['pergunta_id' => '2', 'desc' => 'resposta 2, errada', 'correta' => '0']
+            ['pergunta_id' => '2', 'desc' => 'R1, R2 e R3.', 'correta' => '0']
         );
 
         Resposta::updateOrCreate(
             ['id' => '7'],
-            ['pergunta_id' => '2', 'desc' => 'resposta 3, errada', 'correta' => '0']
+            ['pergunta_id' => '2', 'desc' => 'R1, R2 e R5.', 'correta' => '0']
         );
 
         Resposta::updateOrCreate(
             ['id' => '8'],
-            ['pergunta_id' => '2', 'desc' => 'resposta 4, errada', 'correta' => '0']
+            ['pergunta_id' => '2', 'desc' => 'R1, R3 e R4.', 'correta' => '0']
         );
 
         Resposta::updateOrCreate(
             ['id' => '9'],
-            ['pergunta_id' => '3', 'desc' => 'resposta 1, correta', 'correta' => '1']
+            ['pergunta_id' => '2', 'desc' => 'R2, R4 e R5.', 'correta' => '1']
         );
 
         Resposta::updateOrCreate(
             ['id' => '10'],
-            ['pergunta_id' => '3', 'desc' => 'resposta 2, errada', 'correta' => '0']
+            ['pergunta_id' => '2', 'desc' => 'R3, R4 e R5.', 'correta' => '0']
         );
 
         Resposta::updateOrCreate(
             ['id' => '11'],
-            ['pergunta_id' => '3', 'desc' => 'resposta 3, errada', 'correta' => '0']
+            ['pergunta_id' => '3', 'desc' => 'I e III', 'correta' => '1']
         );
 
         Resposta::updateOrCreate(
             ['id' => '12'],
-            ['pergunta_id' => '3', 'desc' => 'resposta 4, errada', 'correta' => '0']
+            ['pergunta_id' => '3', 'desc' => 'II e III', 'correta' => '0']
         );
-
-        //Fase 2
 
         Resposta::updateOrCreate(
             ['id' => '13'],
-            ['pergunta_id' => '4', 'desc' => 'resposta 1, correta', 'correta' => '1']
+            ['pergunta_id' => '3', 'desc' => 'II e IV', 'correta' => '0']
         );
 
         Resposta::updateOrCreate(
             ['id' => '14'],
-            ['pergunta_id' => '4', 'desc' => 'resposta 2, errada', 'correta' => '0']
+            ['pergunta_id' => '3', 'desc' => 'I, II e IV', 'correta' => '0']
         );
 
         Resposta::updateOrCreate(
             ['id' => '15'],
-            ['pergunta_id' => '4', 'desc' => 'resposta 3, errada', 'correta' => '0']
+            ['pergunta_id' => '3', 'desc' => 'I, III e IV', 'correta' => '0']
         );
+
+        //Fase 2
 
         Resposta::updateOrCreate(
             ['id' => '16'],

@@ -23,7 +23,7 @@ class ColecaoController extends Controller
         if ($avatar->equipado_em == 'cabeca')
             $usuario->avatar_cabeca = $avatar->imagem;
         else
-            $ususario->avatar_traje = $avatar->imagem;
+            $usuario->avatar_traje = $avatar->imagem;
         
         $usuario->save();
 

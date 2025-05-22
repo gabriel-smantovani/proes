@@ -11,15 +11,17 @@
 
     @if (session('success'))
         <div class="w-full flex justify-center mt-4">
-            <div class="alert alert-success">
+            <div class="alert alert-success" style="background-color: #34d399">
                 {{ session('success') }}
             </div>
         </div>
     @endif
 
     @if(session('error'))
-        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded mb-2">
-            {{ session('error') }}
+        <div class="w-full flex justify-center mt-4">
+            <div class="border border-red-400 text-red-700 px-4 py-2 rounded mb-2" style="background-color: #f43f5e">
+                {{ session('error') }}
+            </div>
         </div>
     @endif
 

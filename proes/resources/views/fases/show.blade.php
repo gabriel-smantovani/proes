@@ -29,7 +29,7 @@
 
         <div class="d-flex justify-content-evenly mt-4">
             <button type="button" id="btn-anterior" class="btn btn-primary" style="background-color: #3730a3; display:none">Anterior</button>
-            <button type="submit" id="btn-finalizar" class="btn btn-danger" style="display:none;">Finalizar</button>
+            <button type="submit" id="btn-finalizar" class="btn btn-danger" style="display:none;">Enviar respostas</button>
             <button type="button" id="btn-proxima" class="btn btn-primary" style="background-color: #3730a3">Próxima</button>
         </div>
     </form>

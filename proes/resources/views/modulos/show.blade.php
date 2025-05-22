@@ -53,13 +53,38 @@
                 <a href="{{ route('materiais.edit', ['material' => $material->id]) }}" class="btn btn-warning" style="border: 1px solid white; font-weight: bold; margin-right: 1em">
                     <i class="bi bi-pencil-fill"></i>
                 </a>
-                <form action="{{ route('materiais.destroy', $material->id) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir este material?');">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger" style="border: 1px solid white">
-                        <i class="bi bi-trash-fill"></i>
-                    </button>
-                </form>
+                <x-danger-button
+                    x-data=""
+                    x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')"
+                    style="display: flex; justify-content: center; width: 38px; height: 38px"
+                >
+                    <i class="bi bi-trash-fill" style="font-size: 1.3em"></i>
+                </x-danger-button>
+
+                <x-modal name="confirm-user-deletion" :show="$errors->userDeletion->isNotEmpty()" focusable>
+                    <form method="post" action="{{ route('materiais.destroy', $material->id) }}" class="p-6">
+                        @csrf
+                        @method('delete')
+
+                        <h2 class="text-lg font-medium text-gray-900">
+                            {{ __('Tem certeza que deseja excluir este material?') }}
+                        </h2>
+
+                        <p class="mt-1 text-sm text-gray-600">
+                            {{ __('Se for um arquivo ele também será perdido.') }}
+                        </p>
+
+                        <div class="mt-6 flex justify-end">
+                            <x-secondary-button x-on:click="$dispatch('close')">
+                                {{ __('Cancelar') }}
+                            </x-secondary-button>
+
+                            <x-danger-button class="ms-3">
+                                {{ __('Deletar o material') }}
+                            </x-danger-button>
+                        </div>
+                    </form>
+                </x-modal>
             @endif
             <div class="col-md-1 d-flex justify-content-end" style="margin-right: 2em">
                 @php
@@ -100,13 +125,38 @@
                 <a href="{{ route('perguntas.show', $fase->id) }}"  class="btn btn-warning" style="border: 1px solid white; font-weight: bold; margin-right: 1em">
                     <i class="bi bi-pencil-fill"></i>
                 </a>
-                <form action="{{ route('fases.destroy', $fase->id) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir esta fase por inteira?');">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger" style="border: 1px solid white">
-                        <i class="bi bi-trash-fill"></i>
-                    </button>
-                </form>
+                <x-danger-button
+                    x-data=""
+                    x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')"
+                    style="display: flex; justify-content: center; width: 38px; height: 38px"
+                >
+                    <i class="bi bi-trash-fill" style="font-size: 1.3em"></i>
+                </x-danger-button>
+
+                <x-modal name="confirm-user-deletion" :show="$errors->userDeletion->isNotEmpty()" focusable>
+                    <form method="post" action="{{ route('fases.destroy', $fase->id) }}" class="p-6">
+                        @csrf
+                        @method('delete')
+
+                        <h2 class="text-lg font-medium text-gray-900">
+                            {{ __('Tem certeza que deseja excluir esta fase e suas dependências?') }}
+                        </h2>
+
+                        <p class="mt-1 text-sm text-gray-600">
+                            {{ __('Esta deleção exclui todas as perguntas e respostas vinculadas a esta fase.') }}
+                        </p>
+
+                        <div class="mt-6 flex justify-end">
+                            <x-secondary-button x-on:click="$dispatch('close')">
+                                {{ __('Cancelar') }}
+                            </x-secondary-button>
+
+                            <x-danger-button class="ms-3">
+                                {{ __('Deletar a fase') }}
+                            </x-danger-button>
+                        </div>
+                    </form>
+                </x-modal>
             @endif
             <div class="col-md-1 d-flex justify-content-end" style="margin-right: 2em">
                 <a href="{{ route('fases.show', $fase->id) }}" class="btn btn-success" style="background-color: #3730a3; border: 1px solid #34d399; font-weight: bold; color: #f3f4f6">

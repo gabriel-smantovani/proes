@@ -31,13 +31,35 @@
                         <i class="bi bi-pencil-fill"></i>
                     </a>
 
-                    <form action="{{ route('perguntas.destroy', $pergunta->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Deseja realmente excluir esta pergunta?');">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger btn-sm"  style="margin-right: 1em">
-                            <i class="bi bi-trash-fill"></i>
-                        </button>
-                    </form>
+                    <x-danger-button
+                        x-data=""
+                        x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')"
+                    >{{ __('Delete a pergunta') }}</x-danger-button>
+
+                    <x-modal name="confirm-user-deletion" :show="$errors->userDeletion->isNotEmpty()" focusable>
+                        <form method="post" action="{{ route('perguntas.destroy', $pergunta->id) }}" class="p-6">
+                            @csrf
+                            @method('delete')
+
+                            <h2 class="text-lg font-medium text-gray-900">
+                                {{ __('Tem certeza que deseja excluir esta pergunta?') }}
+                            </h2>
+
+                            <p class="mt-1 text-sm text-gray-600">
+                                {{ __('As recompensas já obtidas desta fase não serão retiradas dos usuários.') }}
+                            </p>
+
+                            <div class="mt-6 flex justify-end">
+                                <x-secondary-button x-on:click="$dispatch('close')">
+                                    {{ __('Cancelar') }}
+                                </x-secondary-button>
+
+                                <x-danger-button class="ms-3">
+                                    {{ __('Deletar a pergunta') }}
+                                </x-danger-button>
+                            </div>
+                        </form>
+                    </x-modal>
                 </div>
             </div>
         </div>

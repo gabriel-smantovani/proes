@@ -37,11 +37,12 @@
             <div class="mb-4" id="campo-upload" style="{{ $material->tipo_de_arquivo === 'upload' ? '' : 'display: none;' }}">
                 <label class="block font-semibold" style="color: #f3f4f6">Arquivo:</label>
                 <input type="file" name="arquivo" class="w-full" style="color: #f3f4f6">
-                <p class="text-sm mt-1" style="color: #9ca3af"">Arquivo atual: {{ str_replace('storage/materiais/', '', $material->caminho) }}</p>
+                <p class="text-sm mt-1" style="color: #9ca3af">Arquivo atual: {{ str_replace('storage/materiais/', '', $material->caminho) }}</p>
             </div>
 
             <div class="text-right mt-4 d-flex justify-content-end">
-                <button type="submit" class="btn btn-primary" style="background-color: #3730a3; border: 1px solid #34d399">Salvar</button>
+                <a href="{{ route('modulos.show', $material->modulo_id) }}" class="btn btn-danger" style="margin-right: 1em">Cancelar</a>
+                <button type="submit" class="btn btn-primary" style="background-color: #3730a3; border: 1px solid #34d399">Salvar as alterações</button>
             </div>
         </form>
     </div>

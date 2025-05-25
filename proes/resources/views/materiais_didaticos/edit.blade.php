@@ -1,16 +1,32 @@
 @extends('layouts.app')
 
-@section('title', 'Material de apoio')
+@section('title', 'Editar Material de Apoio')
 
 @section('content')
 <div class="container mt-4 flex-column align-items-center justify-content-center">
     <div class="text-center">
-        <h2 style="color: #f3f4f6; font-size: 2em">Editar material</h2>
+        <h2 style="color: #f3f4f6; font-size: 2em">Edite o material de apoio: {{ $material->titulo }}</h2>
     </div>
+
+    @if (session('success'))
+        <div class="w-full flex justify-center mt-4">
+            <div class="alert alert-success" style="background-color: #34d399">
+                {{ session('success') }}
+            </div>
+        </div>
+    @endif
+
+    @if(session('error'))
+        <div class="w-full flex justify-center mt-4">
+            <div class="border border-red-400 text-red-700 px-4 py-2 rounded mb-2" style="background-color: #f43f5e">
+                {{ session('error') }}
+            </div>
+        </div>
+    @endif
 
     <div class="w-full sm:max-w-2xl mt-6 px-6 py-4 shadow-md mx-auto overflow-hidden sm:rounded-lg" style="background-color: #1f2937">
 
-        <form method="POST" action="{{ route('materiais.update', $material) }}" enctype="multipart/form-data" class="mt-4">
+        <form action="{{ route('materiais.update', $material->id) }}" method="POST" enctype="multipart/form-data" class="mt-4">
             @csrf
             @method('PUT')
 
@@ -18,40 +34,73 @@
 
             <div class="mb-3">
                 <label for="material-titulo" style="color: #f3f4f6">Título</label>
-                <input type="text" name="titulo" value="{{ old('titulo', $material->titulo) }}" maxlength="70" class="block mt-1 w-full" required>
+                <input type="text" name="titulo" id="material-titulo" maxlength="70" class="block mt-1 w-full" required value="{{ old('titulo', $material->titulo) }}">
             </div>
 
             <div class="mb-3">
-                <label for="tipo_input" style="color: #f3f4f6">Tipo do arquivo</label>
-                <select id="tipo_input" name="tipo_de_arquivo" class="block mt-1 w-full form-select" onchange="toggleCampos(this.value)">
-                    <option value="link" {{ $material->tipo_de_arquivo === 'link' ? 'selected' : '' }}>Link</option>
-                    <option value="upload" {{ $material->tipo_de_arquivo === 'upload' ? 'selected' : '' }}>Upload de arquivo</option>
+                <label for="tipo_input" style="color: #f3f4f6">Tipo de material</label>
+                <select id="tipo_input" name="tipo_de_arquivo" class="block mt-1 w-full form-select" onchange="alternarTipoMaterial()" required>
+                    <option value="">Selecione...</option>
+                    <option value="link" {{ $material->tipo_de_arquivo == 'link' ? 'selected' : '' }}>Link</option>
+                    <option value="upload" {{ $material->tipo_de_arquivo == 'upload' ? 'selected' : '' }}>Upload de arquivo</option>
+                    <option value="youtube" {{ $material->tipo_de_arquivo == 'youtube' ? 'selected' : '' }}>YouTube</option>
                 </select>
             </div>
 
-            <div class="mb-4" id="campo-link" style="{{ $material->tipo_de_arquivo === 'link' ? '' : 'display: none;' }}">
-                <label class="block font-semibold" style="color: #f3f4f6">Link:</label>
-                <input type="text" name="caminho" value="{{ old('caminho', $material->tipo_de_arquivo === 'link' ? $material->caminho : '') }}" class="w-full border p-2">
+            <div class="mb-3 {{ in_array($material->tipo_de_arquivo, ['link', 'youtube']) ? '' : 'hidden' }}" id="campo-link">
+                <label for="material-link" style="color: #f3f4f6">
+                    {{ $material->tipo_de_arquivo === 'youtube' ? 'Link do vídeo YouTube' : 'Link' }}
+                </label>
+                <input type="text" name="caminho" id="material-link" class="block mt-1 w-full"
+                    value="{{ old('caminho', $material->tipo_de_arquivo === 'youtube' ? 'https://www.youtube.com/watch?v=' . $material->caminho : $material->caminho) }}">
             </div>
 
-            <div class="mb-4" id="campo-upload" style="{{ $material->tipo_de_arquivo === 'upload' ? '' : 'display: none;' }}">
-                <label class="block font-semibold" style="color: #f3f4f6">Arquivo:</label>
-                <input type="file" name="arquivo" class="w-full" style="color: #f3f4f6">
-                <p class="text-sm mt-1" style="color: #9ca3af">Arquivo atual: {{ str_replace('storage/materiais/', '', $material->caminho) }}</p>
+            <div class="mb-3 {{ $material->tipo_de_arquivo == 'upload' ? '' : 'hidden' }}" id="campo-upload">
+                <label for="material-upload" style="color: #f3f4f6">Arquivo</label>
+                <input type="file" name="arquivo" id="material-upload" class="block mt-1 w-full" style="color: #f3f4f6">
+                @if($material->tipo_de_arquivo === 'upload' && $material->caminho)
+                    <p class="text-sm mt-1" style="color: #f3f4f6">Arquivo atual: 
+                        <a href="{{ asset('storage/' . $material->caminho) }}" target="_blank">Ver arquivo</a>
+                    </p>
+                @endif
             </div>
 
-            <div class="text-right mt-4 d-flex justify-content-end">
-                <a href="{{ route('modulos.show', $material->modulo_id) }}" class="btn btn-danger" style="margin-right: 1em">Cancelar</a>
-                <button type="submit" class="btn btn-primary" style="background-color: #3730a3; border: 1px solid #34d399">Salvar as alterações</button>
+            <div class="d-flex justify-content-end">
+                <a href="{{ route('modulos.show', $material->modulo_id) }}" class="btn btn-danger me-2">Cancelar</a>
+                <button type="submit" class="btn btn-primary" style="background-color: #3730a3; border: 1px solid #34d399;">Atualizar</button>
             </div>
         </form>
     </div>
 </div>
 
 <script>
-    function toggleCampos(tipo) {
-        document.getElementById('campo-link').style.display = tipo === 'link' ? '' : 'none';
-        document.getElementById('campo-upload').style.display = tipo === 'upload' ? '' : 'none';
+    function alternarTipoMaterial() {
+        const tipo = document.getElementById('tipo_input').value;
+
+        const campoLinkDiv = document.getElementById('campo-link');
+        const campoLinkInput = document.getElementById('material-link');
+
+        const campoUploadDiv = document.getElementById('campo-upload');
+        const campoUploadInput = document.getElementById('material-upload');
+
+        campoLinkDiv.classList.add('hidden');
+        campoUploadDiv.classList.add('hidden');
+
+        campoLinkInput.removeAttribute("required");
+        campoUploadInput.removeAttribute("required");
+
+        if (tipo === 'link' || tipo === 'youtube') {
+            campoLinkDiv.classList.remove('hidden');
+            campoLinkInput.setAttribute("required", "true");
+            
+            // Limpa o campo se mudar de tipo
+            if (campoLinkInput.dataset.tipoAnterior !== tipo) {
+                campoLinkInput.value = '';
+            }
+            campoLinkInput.dataset.tipoAnterior = tipo;
+        } else if (tipo === 'upload') {
+            campoUploadDiv.classList.remove('hidden');
+        }
     }
 </script>
 @endsection

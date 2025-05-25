@@ -10,12 +10,15 @@ return new class extends Migration
     {
         Schema::create('materiais_didaticos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('modulo_id')->constrained()->onDelete('cascade');
-            $table->string('titulo', 70);
+            $table->unsignedBigInteger('modulo_id');
+            $table->string('titulo');
+            $table->string('tipo_de_arquivo'); // upload, link, youtube
+            $table->unsignedBigInteger('user_id');
             $table->string('caminho');
-            $table->string('tipo_de_arquivo');
-            $table->foreignId('user_id')->nullable();
             $table->timestamps();
+
+            $table->foreign('modulo_id')->references('id')->on('modulos')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

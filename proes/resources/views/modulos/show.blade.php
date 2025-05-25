@@ -89,18 +89,28 @@
                 </x-modal>
             @endif
             <div class="col-md-1 d-flex justify-content-end" style="margin-right: 2em">
-                @php
-                    $isLink = $material->tipo_de_arquivo === 'link';
-                    $href = $isLink ? $material->caminho : asset($material->caminho);
-                @endphp
-
-                <a href="{{ $href }}" {{ $isLink ? 'target=_blank' : 'download' }} class="btn btn-success" style="background-color: #3730a3; border: 1px solid #34d399; font-weight: bold; color: #f3f4f6">
-                    @if ($isLink)
+                @if($material->tipo_de_arquivo == 'upload')
+                    <a href="{{ asset('storage/' . $material->caminho) }}" target="_blank"
+                        class="btn btn-success"
+                        style="background-color: #3730a3; border: 1px solid #34d399; font-weight: bold; color: #f3f4f6"
+                    >
+                    <i class="bi bi-file-earmark"></i>
+                    </a>
+                @elseif($material->tipo_de_arquivo == 'youtube')
+                    <a href="{{ route('materiais_didaticos.ver_video', $material->id) }}" target="_blank"
+                        class="btn btn-success"
+                        style="background-color: #3730a3; border: 1px solid #34d399; font-weight: bold; color: #f3f4f6"
+                    >
+                    <i class="bi bi-play-fill"></i>
+                    </a>
+                @elseif($material->tipo_de_arquivo == 'link')
+                    <a href="{{ $material->caminho }}" target="_blank"
+                        class="btn btn-success"
+                        style="background-color: #3730a3; border: 1px solid #34d399; font-weight: bold; color: #f3f4f6"
+                    >
                         <i class="bi bi-box-arrow-up-right"></i>
-                    @else
-                        <i class="bi bi-download"></i>
-                    @endif
-                </a>
+                    </a>
+                @endif
             </div>
         </div>
     @endforeach

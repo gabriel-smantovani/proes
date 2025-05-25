@@ -21,12 +21,12 @@ class LojaController extends Controller
 
         // Verifica se o avatar já foi previamente comprado pelo usuário
         if ($usuario->avatares->contains($avatar->id)) {
-            return redirect()->back()->with('info', 'Você já possui este avatar.');
+            return redirect()->back()->with('info', 'Você já possui este avatar');
         }
 
         // Verifica se o usuário tem moedas suficientes para comprar o avatar
         if ($usuario->moedas < $avatar->preco) {
-            return redirect()->back()->with('error', 'Moedas insuficientes.');
+            return redirect()->back()->with('error', 'Moedas insuficientes');
         }
 
         // Realiza, de fato, a compra do avatar

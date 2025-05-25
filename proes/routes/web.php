@@ -50,6 +50,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/materiais/{material}/edit', [MaterialDidaticoController::class, 'edit'])->name('materiais.edit');
     Route::put('/materiais/{material}', [MaterialDidaticoController::class, 'update'])->name('materiais.update');
     Route::delete('/materiais/{material}', [MaterialDidaticoController::class, 'destroy'])->name('materiais.destroy');
+    Route::get('/materiais_didaticos/{id}', [MaterialDidaticoController::class, 'verVideo'])->name('materiais_didaticos.ver_video');
     Route::get('/fases/{fase}/perguntas', [PerguntaController::class, 'show'])->name('perguntas.show');
     Route::get('/perguntas/create/{fase_id}', [PerguntaController::class, 'create'])->name('perguntas.create');
     Route::post('/perguntas', [PerguntaController::class, 'store'])->name('perguntas.store');

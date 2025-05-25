@@ -11,9 +11,15 @@ class ConquistaController extends Controller
 {
     public function index()
     {
-        $usuario = Auth::user();
-        $conquistas = $usuario->conquistas;
+        $usuario = Auth::user()->load('conquistas');
 
-        return view('conquistas.index', compact('conquistas'));
+        $idsConquistasUsuario = $usuario->conquistas->pluck('id')->toArray();
+
+        $conquistas = Conquista::all();
+
+        $conquistasAlcancadas = $usuario->conquistas;
+        $conquistasNaoAlcancadas = $conquistas->whereNotIn('id', $idsConquistasUsuario);
+
+        return view('conquistas.index', compact('usuario', 'conquistasAlcancadas', 'conquistasNaoAlcancadas'));
     }
 }

@@ -40,8 +40,8 @@
             <div class="col-md-3 mb-4">
                 <div class="card h-100" style="display: flex; flex-direction: column; align-items: center; background-color: #1f2937; color: #f3f4f6">
                     <div class="card-body">
-                        <h5 class="card-title">{{ $conquista->nome }}</h5>
-                        <p>{{ $conquista->descricao }}</p>
+                        <h5 class="card-title text-gray-400">{{ $conquista->nome }}</h5>
+                        <p class="text-gray-400" style="font-size: 0.8em">{{ $conquista->descricao }}</p>
                     </div>
                 </div>
             </div>

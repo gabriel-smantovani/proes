@@ -3,10 +3,12 @@
 @section('title', 'Material de apoio')
 
 @section('content')
+<div class="container mt-4 d-flex flex-column align-items-center justify-content-center">
 
-<iframe width="560" height="315" 
-    src="https://www.youtube.com/embed/{{ $material->caminho }}" 
-    frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
-</iframe>
+    <iframe width="800" height="450" 
+        src="https://www.youtube.com/embed/{{ $material->caminho }}" 
+        frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+    </iframe>
 
+</div>
 @endsection

@@ -79,7 +79,7 @@ class ConquistaSeeder extends Seeder
             [
                 'descricao' => 'Termine todas as fases com o máximo de pontuação possível',
                 'desc_alcancada' => 'Terminou todas as fases com o máximo de pontuação possível',
-                'imagem' => 'oumanel.png'
+                'imagem' => 'coroa.png'
             ]
         );
     }

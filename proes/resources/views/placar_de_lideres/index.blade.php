@@ -15,7 +15,9 @@
     @foreach ($rankingPontuadores as $usuario)
         <a href="{{ route('profile.show', $usuario->id) }}" target="_blank" class="border rounded p-3"  style="display: flex; align-items: center; justify-content: space-between; width: 95%; margin-top: 0.5em; background-color: #1f2937; color: #f3f4f6">
             <p style="margin-left: 1em">{{ $usuario->name }}</p>
-            <p style="margin-right: 1em">{{ $usuario->total_pontuacao }} pontos</p>
+            <p style="margin-right: 1em">
+                {{ $usuario->total_pontuacao }} {{ $usuario->total_pontuacao == 1 ? 'ponto' : 'pontos' }}
+            </p>
         </a>
     @endforeach
     </div>    

@@ -13,7 +13,7 @@ class AvatarSeeder extends Seeder
         Avatar::updateOrCreate(
             ['id' => '1'],
             [
-                'nome' => 'Cabeça de orc padrão',
+                'nome' => 'Cabeça de orc',
                 'imagem' => 'defaultcabeca.png',
                 'preco' => 0,
                 'equipado_em' => 'cabeca'
@@ -23,7 +23,7 @@ class AvatarSeeder extends Seeder
         Avatar::updateOrCreate(
             ['id' => '2'],
             [
-                'nome' => 'Traje de orc padrão',
+                'nome' => 'Traje de orc',
                 'imagem' => 'defaulttraje.png',
                 'preco' => 0,
                 'equipado_em' => 'traje'
@@ -33,8 +33,8 @@ class AvatarSeeder extends Seeder
         Avatar::updateOrCreate(
             ['id' => '3'],
             [
-                'nome' => 'Cabeça de orc verde',
-                'imagem' => 'greenhead.png',
+                'nome' => 'Capacete do Darth Vader',
+                'imagem' => 'cabecadarthvader.png',
                 'preco' => 1,
                 'equipado_em' => 'cabeca'
             ]
@@ -43,8 +43,28 @@ class AvatarSeeder extends Seeder
         Avatar::updateOrCreate(
             ['id' => '4'],
             [
-                'nome' => 'Traje de orc verde',
-                'imagem' => 'greensuit.png',
+                'nome' => 'Traje do Darth Vader',
+                'imagem' => 'trajedarthvader.png',
+                'preco' => 1,
+                'equipado_em' => 'traje'
+            ]
+        );
+
+        Avatar::updateOrCreate(
+            ['id' => '5'],
+            [
+                'nome' => 'Cabeça do Sullivan',
+                'imagem' => 'cabecasullivan.png',
+                'preco' => 1,
+                'equipado_em' => 'cabeca'
+            ]
+        );
+
+        Avatar::updateOrCreate(
+            ['id' => '6'],
+            [
+                'nome' => 'Traje do Sullivan',
+                'imagem' => 'trajesullivan.png',
                 'preco' => 1,
                 'equipado_em' => 'traje'
             ]

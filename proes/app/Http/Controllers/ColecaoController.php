@@ -27,6 +27,8 @@ class ColecaoController extends Controller
         
         $usuario->save();
 
+        app(\App\Services\ConquistaService::class)->verificarConquistas(Auth::user());
+
         return redirect()->back()->with('success', 'Avatar equipado!');
     }
 }

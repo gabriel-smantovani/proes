@@ -16,9 +16,10 @@
         @foreach ($conquistasAlcancadas as $conquista)
             <div class="col-md-3 mb-4">
                 <div class="card h-100" style="display: flex; flex-direction: column; align-items: center; background-color: #1f2937; color: #f3f4f6">
-                    <div class="card-body">
+                    <div class="card-body d-flex flex-col align-items-center justify-content-center">
                         <h5 class="card-title">{{ $conquista->nome }}</h5>
-                        <p>{{ $conquista->descricao }}</p>
+                        <p class="text-gray-400">{{ $conquista->desc_alcancada }}</p>
+                        <img src="{{ asset('storage/' . $conquista->imagem) }}" class="card-img-top" style="width: 4em; height: 4em; margin: 1em 0 1em 0; background-color: #1f2937">
                         <p class="text-sm text-gray-400">
                             Obtida em: {{ $conquista->pivot->created_at->setTimezone('America/Sao_Paulo')->format('d/m/Y H:i') }}
                         </p>

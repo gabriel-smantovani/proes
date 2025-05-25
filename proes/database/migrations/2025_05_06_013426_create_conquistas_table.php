@@ -12,6 +12,8 @@ return new class extends Migration
             $table->id();
             $table->string('nome', 50);
             $table->string('descricao', 70);
+            $table->string('desc_alcancada', 70);
+            $table->string('imagem');
             $table->timestamps();
         });
     }

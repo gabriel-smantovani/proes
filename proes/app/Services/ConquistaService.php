@@ -6,6 +6,8 @@ use App\Models\User;
 use App\Models\Conquista;
 use App\Models\Modulo;
 use App\Models\Fase;
+use App\Models\Pergunta;
+use App\Models\ResultadoFase;
 
 class ConquistaService
 {
@@ -16,6 +18,9 @@ class ConquistaService
         $this->verificarFasesDoModulo1($usuario);
         $this->verificarFasesDoModulo2($usuario);
         $this->verificarFasesDoModulo3($usuario);
+        $this->verificarMudancaAvatar($usuario);
+        $this->verificarMudancasContato($usuario);
+        $this->verificarCompletudeDoJogo($usuario);
     }
 
     private function desbloquear(User $usuario, string $nomeConquista)
@@ -24,20 +29,19 @@ class ConquistaService
 
         if ($conquista && !$usuario->conquistas->contains($conquista->id)) {
             $usuario->conquistas()->attach($conquista->id);
-            session()->flash('conquista', "Você desbloqueou a conquista: {$conquista->nome}");
         }
     }
 
     private function verificarPrimeiraFaseJogada(User $usuario)
     {
         if ($usuario->resultadosFases()->exists()) {
-            $this->desbloquear($usuario, 'Boas-vindas!');
+            $this->desbloquear($usuario, 'O início de uma jornada!');
         }
     }
 
     private function verificarAcumulouMoedas(User $usuario)
     {
-        if ($usuario->moedas >= 6) {
+        if ($usuario->moedas >= 10) {
             $this->desbloquear($usuario, 'Mão de vaca');
         }
     }
@@ -48,7 +52,7 @@ class ConquistaService
         $fasesJogadas = $usuario->resultadosFases()->pluck('fase_id')->unique();
 
         if ($idsFasesDoModulo->diff($fasesJogadas)->isEmpty()) {
-            $this->desbloquear($usuario, 'Era uma vez...');
+            $this->desbloquear($usuario, 'Lá se vai o primeiro');
         }
     }
 
@@ -58,7 +62,7 @@ class ConquistaService
         $fasesJogadas = $usuario->resultadosFases()->pluck('fase_id')->unique();
 
         if ($idsFasesDoModulo->diff($fasesJogadas)->isEmpty()) {
-            $this->desbloquear($usuario, 'Quanta informação!');
+            $this->desbloquear($usuario, 'Mais um!');
         }
     }
 
@@ -68,8 +72,28 @@ class ConquistaService
         $fasesJogadas = $usuario->resultadosFases()->pluck('fase_id')->unique();
 
         if ($idsFasesDoModulo->diff($fasesJogadas)->isEmpty()) {
-            $this->desbloquear($usuario, 'Acabou!?');
+            $this->desbloquear($usuario, 'Já acabou!?');
         }
     }
 
+    private function verificarMudancaAvatar(User $usuario) {
+        if ($usuario->avatar_cabeca !== 'defaultcabeca.png' || $usuario->avatar_traje !== 'defaulttraje.png') {
+            $this->desbloquear($usuario, 'À sua cara!');
+        }
+    }
+
+    private function verificarMudancasContato(User $usuario) {
+        if (!is_null($usuario->link_github) || !is_null($usuario->link_linkedin) || !is_null($usuario->instituicao_ensino)) {
+            $this->desbloquear($usuario, 'Tô aqui ó');
+        }
+    }
+
+    private function verificarCompletudeDoJogo(User $usuario) {
+        $totalPontos = Pergunta::count();
+        $totalPontosDoUsuario = ResultadoFase::where('user_id', $usuario->id)->sum('pontuacao');
+        
+        if ($totalPontos === (int) $totalPontosDoUsuario) {
+            $this->desbloquear($usuario, 'Platinado');
+        }
+    }
 }

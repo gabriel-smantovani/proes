@@ -24,7 +24,7 @@ class ModuloSeeder extends Seeder
             [
                 'desc' => 'Este módulo contempla conteúdos como técnicas e diagramas, ferramentas que auxiliam e compõem a documentação de um software.',
                 'img_link' => 'bi bi-book-half',
-                'conquista_necessaria_id' => 3
+                'conquista_necessaria_id' => 2
             ]
         );
 
@@ -33,7 +33,7 @@ class ModuloSeeder extends Seeder
             [
                 'desc' => 'Este módulo contempla conteúdos como testes de caixa branca e caixa preta entre outros diagramas que completam a documentação do software mais voltados à modelagem do mesmo.',
                 'img_link' => 'bi bi-book-fill',
-                'conquista_necessaria_id' => 4
+                'conquista_necessaria_id' => 3
             ]
         );
     }

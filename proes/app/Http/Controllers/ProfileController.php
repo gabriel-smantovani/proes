@@ -47,6 +47,8 @@ class ProfileController extends Controller
 
         $request->user()->save();
 
+        app(\App\Services\ConquistaService::class)->verificarConquistas(Auth::user());
+
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 

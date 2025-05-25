@@ -9,7 +9,7 @@ class Conquista extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['id', 'nome', 'descricao'];
+    protected $fillable = ['id', 'nome', 'descricao', 'desc_alcancada', 'imagem'];
 
     public function usuarios()
     {

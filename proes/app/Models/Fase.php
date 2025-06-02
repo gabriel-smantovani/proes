@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\ResultadoFase;
 
 class Fase extends Model
 {
@@ -21,8 +22,20 @@ class Fase extends Model
         return $this->hasMany(Pergunta::class);
     }
 
+    public function resultados_fases()
+    {
+        return $this->hasMany(ResultadoFase::class);
+    }
+
     public function users()
     {
         return $this->belongsToMany(User::class)->withPivot('acertos')->withTimestamps();
+    }
+
+    public function resultadoDoUsuario($usuarioId)
+    {
+        return $this->resultados_fases()
+                    ->where('user_id', $usuarioId)
+                    ->first();
     }
 }

@@ -130,8 +130,13 @@
     <div style="display: flex; flex-direction: column; align-items: end">
     @foreach ($fases as $fase)
         <div class="border rounded p-3" style="display: flex; align-items: center; justify-content: space-between; width: 90%; margin-top: 0.5em; background-color: #1f2937; color: #f3f4f6">
+            @php
+                $resultado = $fase->resultadoDoUsuario(auth()->id());
+                $pontuacao = $resultado ? $resultado->pontuacao : 0;
+                $totalPerguntas = $fase->perguntas()->count();
+            @endphp
             <div style="width: 80%">
-                <p style="margin-left: 1em">{{ $fase->titulo }}</p>
+                <p style="margin-left: 1em">{{ $fase->titulo }} <span style="color: #34d399">{{ $pontuacao }}/{{ $totalPerguntas }}</span></p>
             </div>
             @if ((auth()->user()?->tipo === 'professor') && (auth()->user()?->id === $fase->user_id))
                 <a href="{{ route('perguntas.show', $fase->id) }}"  class="btn btn-warning" style="border: 1px solid white; font-weight: bold; margin-right: 1em">
